@@ -1,0 +1,67 @@
+object frmMain: TfrmMain
+  Left = 0
+  Top = 0
+  ClientHeight = 592
+  ClientWidth = 384
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [dkDesktop]
+  DesignerMobile = True
+  DesignerWidth = 384
+  DesignerHeight = 592
+  DesignerDeviceName = 'Google Nexus 4'
+  DesignerOrientation = 0
+  DesignerOSVersion = ''
+  object imgMain: TImage
+    Touch.GestureManager = GestureManagerMain
+    Touch.InteractiveGestures = [igZoom, igPressAndtap]
+    MultiResBitmap = <
+      item
+      end>
+    Align = alClient
+    Height = 592.000000000000000000
+    Width = 384.000000000000000000
+  end
+  object GestureManagerMain: TGestureManager
+    Left = 48
+    Top = 544
+    GestureData = <
+      item
+        Control = imgMain
+        Collection = <
+          item
+            Action = ActionBack
+            GestureID = sgiLeft
+          end
+          item
+            Action = ActionForawrd
+            GestureID = sgiRight
+          end>
+      end>
+  end
+  object ActionListMain: TActionList
+    Left = 144
+    Top = 544
+    object ActionBack: TAction
+    end
+    object ActionForawrd: TAction
+    end
+  end
+  object Http: TIdHTTP
+    AllowCookies = False
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoForceEncodeParams]
+    Left = 208
+    Top = 544
+  end
+end

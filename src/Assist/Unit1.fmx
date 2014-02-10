@@ -1,0 +1,62 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 522
+  ClientWidth = 663
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [dkDesktop, dkiPhone, dkiPad]
+  DesignerMobile = False
+  DesignerWidth = 0
+  DesignerHeight = 0
+  DesignerDeviceName = ''
+  DesignerOrientation = 0
+  DesignerOSVersion = ''
+  object Button1: TButton
+    Align = alBottom
+    Height = 22.000000000000000000
+    Position.Y = 500.000000000000000000
+    TabOrder = 0
+    Text = 'Button1'
+    Width = 663.000000000000000000
+    OnClick = Button1Click
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [igPan, igLongTap, igDoubleTap]
+    Align = alClient
+    Height = 500.000000000000000000
+    TabOrder = 1
+    Width = 286.000000000000000000
+  end
+  object Image1: TImage
+    MultiResBitmap = <
+      item
+      end>
+    Align = alLeft
+    Height = 500.000000000000000000
+    Width = 377.000000000000000000
+  end
+  object IdHTTP1: TIdHTTP
+    AllowCookies = True
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoForceEncodeParams]
+    Left = 312
+    Top = 336
+  end
+  object XMLDocument1: TXMLDocument
+    Left = 304
+    Top = 224
+    DOMVendorDesc = 'MSXML'
+  end
+end
