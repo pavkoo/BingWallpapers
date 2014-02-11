@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899-12-30 00:00:00.000.167,=D:\Projects\Test\Project1\Unit2.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.356,=D:\Projects\Test\Project1\UserSessionUnit.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.310,=D:\Projects\Test\Project1\ServerController.pas</Transaction>
+  </Transactions>
+</BorlandProject>

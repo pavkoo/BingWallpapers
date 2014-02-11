@@ -15,7 +15,6 @@ type
     ActionListMain: TActionList;
     ActionBack: TAction;
     ActionForawrd: TAction;
-    Http: TIdHTTP;
   private
     { Private declarations }
   public

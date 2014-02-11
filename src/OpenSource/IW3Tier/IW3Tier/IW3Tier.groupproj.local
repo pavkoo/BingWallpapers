@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899/12/30 00:00:00.000.313,D:\Projects\Test\ProjectGroup1.groupproj=D:\Projects\Test\Project1\IW3Tier.groupproj</Transaction>
+  </Transactions>
+	<Default.Personality>
+		<Projects ActiveProject="D:\Code\鹏程\BingWallpapers\src\OpenSource\superobjectv1.2.4\demos\RTTI\rttisearch.dproj"/>
+	</Default.Personality>
+</BorlandProject>

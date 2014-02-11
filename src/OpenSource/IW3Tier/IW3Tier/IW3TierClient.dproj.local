@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899/12/30 00:00:00.000.023,=D:\Projects\CommonFiles\base64.pas</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.821,D:\Projects\Test\Unit3.dfm=D:\Projects\Test\Project1\ClientUnit1.dfm</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.818,=D:\Projects\CommonFiles\ADOToXML.pas</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.140,D:\Projects\CommonFiles\base64.pas=</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.185,=D:\Projects\CommonFiles\superobject.pas</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.117,D:\Projects\Test\Project2.dproj=D:\Projects\Test\IW3TierClient.dproj</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.489,D:\Projects\Test\IW3TierClient.dproj=D:\Projects\Test\Project1\IW3TierClient.dproj</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.976,=D:\Projects\Test\Unit3.pas</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.821,D:\Projects\Test\Unit3.pas=D:\Projects\Test\Project1\ClientUnit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

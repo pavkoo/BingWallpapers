@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{42F73B8B-D340-46BB-9987-976317374887}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="IW3TierServer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="IW3TierClient.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\superobjectv1.2.4\demos\RTTI\rttisearch.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="IW3TierServer">
+        <MSBuild Projects="IW3TierServer.dproj"/>
+    </Target>
+    <Target Name="IW3TierServer:Clean">
+        <MSBuild Projects="IW3TierServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="IW3TierServer:Make">
+        <MSBuild Projects="IW3TierServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="IW3TierClient">
+        <MSBuild Projects="IW3TierClient.dproj"/>
+    </Target>
+    <Target Name="IW3TierClient:Clean">
+        <MSBuild Projects="IW3TierClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="IW3TierClient:Make">
+        <MSBuild Projects="IW3TierClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="rttisearch">
+        <MSBuild Projects="..\..\superobjectv1.2.4\demos\RTTI\rttisearch.dproj"/>
+    </Target>
+    <Target Name="rttisearch:Clean">
+        <MSBuild Projects="..\..\superobjectv1.2.4\demos\RTTI\rttisearch.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="rttisearch:Make">
+        <MSBuild Projects="..\..\superobjectv1.2.4\demos\RTTI\rttisearch.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="IW3TierServer;IW3TierClient;rttisearch"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="IW3TierServer:Clean;IW3TierClient:Clean;rttisearch:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="IW3TierServer:Make;IW3TierClient:Make;rttisearch:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

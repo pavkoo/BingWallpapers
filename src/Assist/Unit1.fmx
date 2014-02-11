@@ -37,6 +37,15 @@ object Form1: TForm1
     Height = 500.000000000000000000
     Width = 377.000000000000000000
   end
+  object btn1: TButton
+    Height = 22.000000000000000000
+    Position.X = 224.000000000000000000
+    Position.Y = 288.000000000000000000
+    TabOrder = 3
+    Text = 'btn1'
+    Width = 80.000000000000000000
+    OnClick = btn1Click
+  end
   object IdHTTP1: TIdHTTP
     AllowCookies = True
     ProxyParams.BasicAuthentication = False
@@ -55,8 +64,8 @@ object Form1: TForm1
     Top = 336
   end
   object XMLDocument1: TXMLDocument
-    Left = 304
-    Top = 224
+    Left = 160
+    Top = 392
     DOMVendorDesc = 'MSXML'
   end
 end

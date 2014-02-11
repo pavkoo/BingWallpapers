@@ -16,7 +16,9 @@ type
     Memo1: TMemo;
     XMLDocument1: TXMLDocument;
     Image1: TImage;
+    btn1: TButton;
     procedure Button1Click(Sender: TObject);
+    procedure btn1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,6 +32,26 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure TForm1.btn1Click(Sender: TObject);
+var
+  a,b,c:AnsiString;
+    h: cardinal;
+  i: Integer;
+  k: WideString;
+begin
+  a:='asdf';
+  b:=a;
+  c:=a;
+//  ShowMessage(IntToStr(PLongInt(PByte(a) - 8)^)+B+C);
+
+  k:='fs_id';
+  h := 0;
+{$Q-}
+  for i := 1 to Length(k) do
+    h := h*129 + ord(k[i]) + $9e370001;
+{$Q+}
+end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var

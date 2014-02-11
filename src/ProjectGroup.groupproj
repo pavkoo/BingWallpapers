@@ -9,6 +9,9 @@
         <Projects Include="Assist\Project1.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="OpenSource\20130728223554_JsonTesting(Source)\JsonTesting.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="Project1:Make">
         <MSBuild Projects="Assist\Project1.dproj" Targets="Make"/>
     </Target>
+    <Target Name="JsonTesting">
+        <MSBuild Projects="OpenSource\20130728223554_JsonTesting(Source)\JsonTesting.dproj"/>
+    </Target>
+    <Target Name="JsonTesting:Clean">
+        <MSBuild Projects="OpenSource\20130728223554_JsonTesting(Source)\JsonTesting.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="JsonTesting:Make">
+        <MSBuild Projects="OpenSource\20130728223554_JsonTesting(Source)\JsonTesting.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="proBingWallpapers;Project1"/>
+        <CallTarget Targets="proBingWallpapers;Project1;JsonTesting"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="proBingWallpapers:Clean;Project1:Clean"/>
+        <CallTarget Targets="proBingWallpapers:Clean;Project1:Clean;JsonTesting:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="proBingWallpapers:Make;Project1:Make"/>
+        <CallTarget Targets="proBingWallpapers:Make;Project1:Make;JsonTesting:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

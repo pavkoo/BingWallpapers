@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
   Left = 0
   Top = 0
-  ClientHeight = 592
+  ClientHeight = 567
   ClientWidth = 384
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -19,7 +19,7 @@ object frmMain: TfrmMain
       item
       end>
     Align = alClient
-    Height = 592.000000000000000000
+    Height = 567.000000000000000000
     Width = 384.000000000000000000
   end
   object GestureManagerMain: TGestureManager
@@ -46,22 +46,5 @@ object frmMain: TfrmMain
     end
     object ActionForawrd: TAction
     end
-  end
-  object Http: TIdHTTP
-    AllowCookies = False
-    ProxyParams.BasicAuthentication = False
-    ProxyParams.ProxyPort = 0
-    Request.ContentLength = -1
-    Request.ContentRangeEnd = -1
-    Request.ContentRangeStart = -1
-    Request.ContentRangeInstanceLength = -1
-    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-    Request.BasicAuthentication = False
-    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
-    Request.Ranges.Units = 'bytes'
-    Request.Ranges = <>
-    HTTPOptions = [hoForceEncodeParams]
-    Left = 208
-    Top = 544
   end
 end
