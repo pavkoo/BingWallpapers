@@ -5,7 +5,8 @@ uses
   FMX.Forms,
   Main in 'Main.pas' {frmMain},
   uBingImageInfo in 'uBingImageInfo.pas',
-  superobject in 'superobject.pas';
+  XSuperJSON in 'XSuperJSON.pas',
+  XSuperObject in 'XSuperObject.pas';
 
 {$R *.res}
 

@@ -172,7 +172,8 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="uBingImageInfo.pas"/>
-        <DCCReference Include="superobject.pas"/>
+        <DCCReference Include="XSuperJSON.pas"/>
+        <DCCReference Include="XSuperObject.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
