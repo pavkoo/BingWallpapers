@@ -108,14 +108,14 @@ type
 
   IJSONNull = interface(IJSONValue<Boolean>) end;
   TJSONNull = class(TJSONValue<Boolean>, IJSONNull)
-  protected
+  public
     procedure AsJSONString(Str: TStringBuilder); override;
     function GetIsNull: Boolean; override;
   end;
 
   IJSONBoolean = interface(IJSONValue<Boolean>)end;
   TJSONBoolean = class(TJSONValue<Boolean>, IJSONBoolean)
-  protected
+  public
     procedure AsJSONString(Str: TStringBuilder); override;
   public
     property Value;
@@ -123,7 +123,7 @@ type
 
   IJSONString = interface(IJSONValue<String>)end;
   TJSONString = class(TJSONValue<String>, IJSONString)
-  protected
+  public
     procedure AsJSONString(Str: TStringBuilder); override;
   public
     property Value;
@@ -131,15 +131,14 @@ type
 
   IJSONInteger = interface(IJSONValue<Int64>)end;
   TJSONInteger = class(TJSONValue<Int64>, IJSONInteger)
-  protected
-    procedure AsJSONString(Str: TStringBuilder); override;
   public
+    procedure AsJSONString(Str: TStringBuilder); override;
     property Value;
   end;
 
   IJSONFloat = interface(IJSONValue<Double>)end;
   TJSONFloat = class(TJSONValue<Double>, IJSONFloat)
-  protected
+  public
     procedure AsJSONString(Str: TStringBuilder); override;
   public
     property Value;
@@ -193,10 +192,9 @@ type
   private
     FPairList: TList<IJSONPair>;
     FNull: Boolean;
-  protected
+  public
     function GetIsNull: Boolean; override;
     procedure AsJSONString(Str: TStringBuilder); override;
-  public
     constructor Create;
     destructor Destroy; override;
     function Count: Integer;
@@ -226,10 +224,9 @@ type
   private
     FList: TList<IJSONAncestor>;
     FNull: Boolean;
-  protected
+  public
     function GetIsNull: Boolean; override;
     procedure AsJSONString(Str: TStringBuilder); override;
-  public
     constructor Create;
     destructor Destroy; override;
     procedure Add(Val: IJSONAncestor);
@@ -706,7 +703,7 @@ begin
   Ch := #0;
   while Ch <= MaxCHR do
   begin
-     if Ch in Chars then
+     if CharInSet(ch,Chars) then
         if not Assigned(FTriggers[Ch]) then
            FTriggers[Ch] := Trigger;
      Inc(Ch);

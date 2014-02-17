@@ -1,37 +1,50 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'D:\Code\鹏程\BingWallpapers\src\ProjectCode\superobject.pas',0,1,585,1,608,0,0,,
-File_1=TSourceModule,'h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Memo.pas',0,1,3225,1,3242,0,0,{{2963,0}
-File_2=TSourceModule,'D:\Code\鹏程\BingWallpapers\src\OpenSource\20130728223554_JsonTesting(Source)\UnitChinaWeather.pas',0,1,920,1,932,0,0,,
-File_3=TSourceModule,'h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.pas',0,1,23356,36,23373,0,0,,
-File_4=TSourceModule,'h:\program files\embarcadero\rad studio\12.0\source\Indy10\Core\IdTCPClient.pas',0,1,123,1,147,0,0,,
-File_5=TSourceModule,'h:\program files\embarcadero\rad studio\12.0\source\Indy10\Protocols\IdHTTP.pas',0,1,437,31,458,0,0,,
-File_6=TSourceModule,'D:\Code\鹏程\BingWallpapers\src\ProjectCode\uBingImageInfo.pas',0,1,1,44,22,0,0,,
-File_7=TSourceModule,'H:\Users\PAVKOO\Downloads\WDApp(WebKit & Delphi FrameWork)\package\dcef3\src\cefvcl.pas',0,1,1313,12,1795,0,0,,
-File_8=TSourceModule,'H:\Users\PAVKOO\Downloads\WDApp(WebKit & Delphi FrameWork)\package\dcef3\src\ceflib.pas',0,1,6278,3,6289,0,0,,
-File_9=TSourceModule,'H:\Users\PAVKOO\Downloads\WDApp(WebKit & Delphi FrameWork)\package\dcef3\src\cefgui.pas',0,1,306,40,322,0,0,,
-File_10=TSourceModule,'H:\Users\PAVKOO\Downloads\WDApp(WebKit & Delphi FrameWork)\src\fMain.pas',0,1,1,15,18,0,0,,
-File_11=TSourceModule,'H:\Users\PAVKOO\Downloads\WDApp(WebKit & Delphi FrameWork)\src\public\uWDAppCef.pas',0,1,65,20,81,0,0,,
-File_12=TSourceModule,'H:\Users\PAVKOO\Downloads\cocwJSONdemo\uLkJSON.pas',0,1,1180,22,1196,0,0,,
-File_13=TSourceModule,'H:\Users\PAVKOO\Downloads\chenjinxing_webhttp2\untHttpHeaderObj.pas',0,1,69,59,19,0,0,,
-File_14=TSourceModule,'H:\Users\PAVKOO\Downloads\chenjinxing_webhttp2\untUploadFile.pas',0,1,70,38,23,0,0,,
+File_0=TSourceModule,'D:\Code\鹏程\BingWallpapers\src\Assist\Unit1.pas',0,1,1,16,15,0,0,,
+File_1=TSourceModule,'h:\program files\embarcadero\rad studio\12.0\source\rtl\common\System.Classes.pas',0,1,1,20,9,0,0,,
+File_2=TSourceModule,'D:\Code\鹏程\BingWallpapers\src\OpenSource\20130728223554_JsonTesting(Source)\SuperObject.pas',0,1,82,35,103,0,0,,
+File_3=TSourceModule,'D:\Code\鹏程\BingWallpapers\src\OpenSource\20130728223554_JsonTesting(Source)\UnitChinaWeather.pas',0,1,833,15,875,0,0,,
+File_4=TSourceModule,'h:\program files\embarcadero\rad studio\12.0\source\Indy10\Protocols\IdHTTP.pas',0,1,358,3,398,0,0,,
+File_5=TSourceModule,'D:\Code\鹏程\BingWallpapers\src\OpenSource\20130728223554_JsonTesting(Source)\untMain.pas',0,1,82,25,99,0,0,,
+File_6=TSourceModule,'D:\Code\鹏程\BingWallpapers\src\ProjectCode\superobject.pas',0,1,585,1,608,0,0,,
+File_7=TSourceModule,'h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Memo.pas',0,1,3225,1,3242,0,0,{{2963,0}
 
 [Modules]
-Module0=D:\Code\鹏程\BingWallpapers\src\Assist\Unit1.pas
-Module1=D:\Code\鹏程\BingWallpapers\src\Assist\Project1.dproj
-Module2=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperJSON.pas
-Module3=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperObject.pas
-Module4=D:\Code\鹏程\BingWallpapers\src\OpenSource\20130728223554_JsonTesting(Source)\untMain.pas
-Module5=D:\Code\鹏程\BingWallpapers\src\ProjectCode\Main.pas
-Count=6
+Module0=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uDataFetcher.pas
+Module1=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uConst.pas
+Module2=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uUrlParam.pas
+Module3=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uBingImageInfo.pas
+Module4=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uWebUtils.pas
+Module5=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperJSON.pas
+Module6=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperObject.pas
+Module7=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.pas
+Module8=D:\Code\鹏程\BingWallpapers\src\ProjectCode\Main.pas
+Count=9
 EditWindowCount=1
 
-[D:\Code\鹏程\BingWallpapers\src\Assist\Unit1.pas]
+[D:\Code\鹏程\BingWallpapers\src\ProjectCode\uDataFetcher.pas]
 ModuleType=TSourceModule
-FormState=1
+FormState=0
 FormOnTop=0
 
-[D:\Code\鹏程\BingWallpapers\src\Assist\Project1.dproj]
-ModuleType=TBaseProject
+[D:\Code\鹏程\BingWallpapers\src\ProjectCode\uConst.pas]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
+
+[D:\Code\鹏程\BingWallpapers\src\ProjectCode\uUrlParam.pas]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
+
+[D:\Code\鹏程\BingWallpapers\src\ProjectCode\uBingImageInfo.pas]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
+
+[D:\Code\鹏程\BingWallpapers\src\ProjectCode\uWebUtils.pas]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
 
 [D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperJSON.pas]
 ModuleType=TSourceModule
@@ -43,25 +56,28 @@ ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
 
-[D:\Code\鹏程\BingWallpapers\src\OpenSource\20130728223554_JsonTesting(Source)\untMain.pas]
+[h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.pas]
 ModuleType=TSourceModule
-FormState=1
-FormOnTop=1
+FormState=0
+FormOnTop=0
 
 [D:\Code\鹏程\BingWallpapers\src\ProjectCode\Main.pas]
 ModuleType=TSourceModule
 FormState=1
-FormOnTop=1
+FormOnTop=0
 
 [EditWindow0]
-ViewCount=6
-CurrentEditView=D:\Code\鹏程\BingWallpapers\src\Assist\Unit1.pas
+ViewCount=9
+CurrentEditView=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uDataFetcher.pas
 View0=0
 View1=1
 View2=2
 View3=3
 View4=4
 View5=5
+View6=6
+View7=7
+View8=8
 PercentageSizes=1
 Create=1
 Visible=1
@@ -93,69 +109,102 @@ BottomMiddelPanelData=0000080001020200000009000000446F636B5369746530100000004772
 
 [View0]
 CustomEditViewType=TEditView
-Module=D:\Code\鹏程\BingWallpapers\src\Assist\Unit1.pas
-CursorX=1
-CursorY=54
-TopLine=6
+Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uWebUtils.pas
+CursorX=6
+CursorY=26
+TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\Code\鹏程\BingWallpapers\src\Assist\Unit1.pas
+EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uWebUtils.pas
 
 [View1]
 CustomEditViewType=TEditView
-Module=D:\Code\鹏程\BingWallpapers\src\Assist\Project1.dpr
+Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uConst.pas
 CursorX=1
-CursorY=9
+CursorY=6
 TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\Code\鹏程\BingWallpapers\src\Assist\Project1.dpr
+EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uConst.pas
 
 [View2]
 CustomEditViewType=TEditView
-Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperJSON.pas
-CursorX=3
-CursorY=17
+Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uUrlParam.pas
+CursorX=11
+CursorY=5
 TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperJSON.pas
+EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uUrlParam.pas
 
 [View3]
 CustomEditViewType=TEditView
-Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperObject.pas
-CursorX=39
-CursorY=1721
-TopLine=1673
+Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uDataFetcher.pas
+CursorX=11
+CursorY=8
+TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperObject.pas
+EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uDataFetcher.pas
 
 [View4]
 CustomEditViewType=TEditView
-Module=D:\Code\鹏程\BingWallpapers\src\OpenSource\20130728223554_JsonTesting(Source)\untMain.pas
-CursorX=25
-CursorY=99
-TopLine=82
+Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uBingImageInfo.pas
+CursorX=2
+CursorY=27
+TopLine=22
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=Borland.FormDesignerView
+EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uBingImageInfo.pas
 
 [View5]
 CustomEditViewType=TEditView
 Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\Main.pas
 CursorX=1
 CursorY=26
-TopLine=1
+TopLine=4
 LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=Borland.FormDesignerView
+
+[View6]
+CustomEditViewType=TEditView
+Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperObject.pas
+CursorX=1
+CursorY=380
+TopLine=361
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperObject.pas
+
+[View7]
+CustomEditViewType=TEditView
+Module=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.pas
+CursorX=1
+CursorY=16189
+TopLine=16170
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.pas
+
+[View8]
+CustomEditViewType=TEditView
+Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperJSON.pas
+CursorX=1
+CursorY=406
+TopLine=390
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperJSON.pas
 
 [Watches]
 Count=0
@@ -291,16 +340,11 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
 ClientHeight=5046
-TBDockHeight=6816
+TBDockHeight=8793
 LRDockWidth=1896
 Dockable=1
 StayOnTop=0
 SplitPos=111
-
-[PropInspDesignerSelection]
-ArrangeBy=Name
-SelectedItem=Action,
-ExpandedItems=Border=0,BorderIcons=0,Fill=0,FormFactor=0,"LiveBindings Designer=0"
 
 [TFileExplorerForm]
 PercentageSizes=1
@@ -308,8 +352,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-1064
-Top=-27
+Left=-1152
+Top=-105
 Width=2847
 Height=6207
 MaxLeft=-1
@@ -328,7 +372,7 @@ Visible=0
 Docked=1
 State=0
 Left=-1296
-Top=208
+Top=-105
 Width=278
 Height=356
 MaxLeft=-1
@@ -432,11 +476,11 @@ State=0
 Left=0
 Top=0
 Width=2340
-Height=954
+Height=1195
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2340
-ClientHeight=954
+ClientHeight=1195
 TBDockHeight=2310
 LRDockWidth=2826
 Dockable=1
@@ -497,11 +541,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=6529
+Height=8506
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=6529
+ClientHeight=8506
 TBDockHeight=4885
 LRDockWidth=7153
 Dockable=1
@@ -516,11 +560,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=6529
+Height=8506
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=6529
+ClientHeight=8506
 TBDockHeight=4885
 LRDockWidth=5306
 Dockable=1
@@ -533,7 +577,7 @@ Visible=0
 Docked=1
 State=0
 Left=-136
-Top=-101
+Top=-105
 Width=1847
 Height=3149
 MaxLeft=-1
@@ -589,8 +633,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=276
-Top=694
+Left=0
+Top=0
 Width=2861
 Height=3207
 MaxLeft=-1
@@ -702,7 +746,7 @@ Visible=0
 Docked=1
 State=0
 Left=0
-Top=23
+Top=0
 Width=3826
 Height=1414
 MaxLeft=-1
@@ -733,7 +777,7 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
 ClientHeight=4529
-TBDockHeight=6816
+TBDockHeight=8793
 LRDockWidth=2000
 Dockable=1
 StayOnTop=0
@@ -757,7 +801,7 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
 ClientHeight=3483
-TBDockHeight=6816
+TBDockHeight=8793
 LRDockWidth=1896
 Dockable=1
 StayOnTop=0
@@ -781,7 +825,7 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
 ClientHeight=4000
-TBDockHeight=6816
+TBDockHeight=8793
 LRDockWidth=2000
 Dockable=1
 StayOnTop=0
