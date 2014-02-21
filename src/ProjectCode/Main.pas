@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Gestures, System.Actions, FMX.ActnList, IdBaseComponent, IdComponent,
-  IdTCPConnection, IdTCPClient, IdHTTP;
+  IdTCPConnection, IdTCPClient, IdHTTP,FMX.Platform;
 
 type
   TfrmMain = class(TForm)

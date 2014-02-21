@@ -1,16 +1,13 @@
 program proBingWallpapers;
 
 uses
-  System.StartUpCopy,
   FMX.Forms,
   Main in 'Main.pas' {frmMain},
-  uBingImageInfo in 'uBingImageInfo.pas',
   XSuperJSON in 'XSuperJSON.pas',
   XSuperObject in 'XSuperObject.pas',
   uConst in 'uConst.pas',
-  uWebUtils in 'uWebUtils.pas',
-  uUrlParam in 'uUrlParam.pas',
-  uDataFetcher in 'uDataFetcher.pas';
+  uBing in 'uBing.pas',
+  uUIAdapter in 'uUIAdapter.pas';
 
 {$R *.res}
 

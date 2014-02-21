@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Menus, ActnList, StdActns, VirtualTrees, SuperObject, superxmlparser,
-  ComCtrls, ExtCtrls, StdCtrls, ExtActns;
+  ComCtrls, ExtCtrls, StdCtrls, ExtActns, System.Actions;
 
 type
   TMainForm = class(TForm)

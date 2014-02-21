@@ -36,6 +36,7 @@ object MainForm: TMainForm
     Header.Font.Height = -11
     Header.Font.Name = 'Tahoma'
     Header.Font.Style = []
+    Header.Height = 17
     Header.Options = [hoColumnResize, hoDblClickResize, hoDrag, hoVisible]
     Header.SortColumn = 0
     Header.Style = hsFlatButtons
@@ -77,6 +78,7 @@ object MainForm: TMainForm
     Width = 625
     Height = 154
     Align = alBottom
+    ImeName = #20013#25991'('#31616#20307') - '#24517#24212' Bing '#36755#20837#27861
     ScrollBars = ssVertical
     TabOrder = 2
   end
@@ -98,6 +100,7 @@ object MainForm: TMainForm
       Width = 625
       Height = 21
       Anchors = [akLeft, akTop, akRight]
+      ImeName = #20013#25991'('#31616#20307') - '#24517#24212' Bing '#36755#20837#27861
       TabOrder = 0
       Text = 
         'http://www.google.com/uds/GwebSearch?rsz=large&v=1.0&q=open sour' +

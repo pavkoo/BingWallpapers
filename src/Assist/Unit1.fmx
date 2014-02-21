@@ -39,12 +39,21 @@ object Form1: TForm1
   end
   object btn1: TButton
     Height = 22.000000000000000000
-    Position.X = 224.000000000000000000
-    Position.Y = 288.000000000000000000
+    Position.X = 16.000000000000000000
+    Position.Y = 472.000000000000000000
     TabOrder = 3
     Text = 'btn1'
     Width = 80.000000000000000000
     OnClick = btn1Click
+  end
+  object btn2: TButton
+    Height = 22.000000000000000000
+    Position.X = 200.000000000000000000
+    Position.Y = 472.000000000000000000
+    TabOrder = 4
+    Text = 'rtti'
+    Width = 80.000000000000000000
+    OnClick = btn2Click
   end
   object IdHTTP1: TIdHTTP
     AllowCookies = True

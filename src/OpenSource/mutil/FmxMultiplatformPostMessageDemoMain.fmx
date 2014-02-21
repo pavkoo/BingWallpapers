@@ -1,0 +1,41 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form3'
+  ClientHeight = 567
+  ClientWidth = 384
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [dkDesktop]
+  DesignerMobile = True
+  DesignerWidth = 384
+  DesignerHeight = 592
+  DesignerDeviceName = 'Google Nexus 4'
+  DesignerOrientation = 0
+  DesignerOSVersion = ''
+  object btnRunThreadButton: TButton
+    Height = 44.000000000000000000
+    Position.X = 224.000000000000000000
+    Position.Y = 320.000000000000000000
+    TabOrder = 0
+    Text = 'btnRunThreadButton'
+    Trimming = ttCharacter
+    Width = 73.000000000000000000
+    OnClick = RunThreadButtonClick
+  end
+  object mmoDisplaymemo: TMemo
+    Touch.InteractiveGestures = [igPan, igLongTap, igDoubleTap]
+    Height = 50.000000000000000000
+    Position.X = 136.000000000000000000
+    Position.Y = 72.000000000000000000
+    TabOrder = 1
+    Width = 100.000000000000000000
+  end
+  object pnlToolPanel: TPanel
+    Height = 120.000000000000000000
+    Position.X = 72.000000000000000000
+    Position.Y = 176.000000000000000000
+    Width = 120.000000000000000000
+    TabOrder = 2
+  end
+end

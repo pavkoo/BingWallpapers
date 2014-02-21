@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP,
   FMX.Layouts, FMX.Memo, Xml.xmldom, Xml.XMLIntf, Xml.Win.msxmldom, Xml.XMLDoc,
-  FMX.Objects,Generics.Collections,Vcl.Graphics,Vcl.Imaging.jpeg;
+  FMX.Objects,Generics.Collections,Vcl.Graphics,Vcl.Imaging.jpeg,System.Rtti;
 
 type
   TForm1 = class(TForm)
@@ -17,8 +17,10 @@ type
     XMLDocument1: TXMLDocument;
     Image1: TImage;
     btn1: TButton;
+    btn2: TButton;
     procedure Button1Click(Sender: TObject);
     procedure btn1Click(Sender: TObject);
+    procedure btn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -51,6 +53,18 @@ begin
   for i := 1 to Length(k) do
     h := h*129 + ord(k[i]) + $9e370001;
 {$Q+}
+end;
+
+procedure TForm1.btn2Click(Sender: TObject);
+var
+  ctx: TRttiContext;
+  t: TRttiType;
+  m: TRttiMethod;
+begin
+  memo1.Lines.Clear;
+  t := ctx.GetType(TButton);
+  //for m in t.GetMethods do Memo1.Lines.Add(m.Name);
+  for m in t.GetMethods do Memo1.Lines.Add(m.ToString);
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
