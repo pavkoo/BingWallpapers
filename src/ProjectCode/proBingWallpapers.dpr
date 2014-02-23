@@ -7,7 +7,9 @@ uses
   XSuperObject in 'XSuperObject.pas',
   uConst in 'uConst.pas',
   uBing in 'uBing.pas',
-  uUIAdapter in 'uUIAdapter.pas';
+  uUIAdapter in 'uUIAdapter.pas',
+  uWebUtils in 'uWebUtils.pas',
+  uBingConfig in 'uBingConfig.pas';
 
 {$R *.res}
 

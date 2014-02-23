@@ -6,25 +6,24 @@ interface
 
 
   type
-    TUiWindows = class
+    TBingLocal = class
     private
       FLocaleScreenSize:TPointF;
       FBingSize:TSizeF;
-      procedure AdapterScreenSize;
+      procedure AdapteScreenSize;
     public
       constructor Create;
-      function GetBingWidth:NativeInt;
-      function GetBingHeight:NativeInt;
+      function GetBingWidth:NativeInt;     //the adjested screen width supported by bing.com
+      function GetBingHeight:NativeInt;    //the adjested screen height supported by bing.com
   end;
 implementation
 
+var
+  LocalInfo:TBingLocal;
+
 { TUiWindows }
 
-
-
-{ TUiWindows }
-
-procedure TUiWindows.AdapterScreenSize;
+procedure TBingLocal.AdapteScreenSize;
 var
   item:Single;
   i,widthIndex:NativeInt;
@@ -76,7 +75,7 @@ begin
   end;
 end;
 
-constructor TUiWindows.Create;
+constructor TBingLocal.Create;
 var
   ScreenServices:IFMXScreenService;
 begin
@@ -85,18 +84,23 @@ begin
     ScreenServices := TPlatformServices.Current.GetPlatformService(IFMXScreenService) as IFMXScreenService;
     FLocaleScreenSize := ScreenServices.GetScreenSize;
   end;
-  AdapterScreenSize;
+  AdapteScreenSize;
 end;
 
 
-function TUiWindows.GetBingHeight: NativeInt;
+function TBingLocal.GetBingHeight: NativeInt;
 begin
   Result := Trunc(FBingSize.Height);
 end;
 
-function TUiWindows.GetBingWidth: NativeInt;
+function TBingLocal.GetBingWidth: NativeInt;
 begin
   Result := Trunc(FBingSize.Width);
 end;
 
+
+initialization
+  LocalInfo:=TBingLocal.Create;
+finalization
+  LocalInfo.Free;
 end.

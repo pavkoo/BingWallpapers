@@ -3,6 +3,8 @@ unit uConst;
 interface
 
   const
+    BINGCONFIGFILE = 'bingConfig.ini';
+
     BINGIMGSOURCE = 'http://www.bing.com/HPImageArchive.aspx?format=%s&idx=%d&n=%d&mkt=%s';
     BINGIMGURL = 'http://www.bing.com/%s_%dx%d.jpg';
 
@@ -19,8 +21,8 @@ interface
     BingResponseJSON='js';
 
 
-     //array must sorted By width
-     BingSupportedResolution:array [1..25] of array [1..2] of Integer=(
+    //array must sorted By width ,this array is gen by project1.exe
+    BingSupportedResolution:array [1..25] of array [1..2] of Integer=(
      (240,240),
      (240,320),
      (240,400),
@@ -47,6 +49,9 @@ interface
      (1920,1080),
      (1920,1200)
      );
+
+
+
 
 implementation
 

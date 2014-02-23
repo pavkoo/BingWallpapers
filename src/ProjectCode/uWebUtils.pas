@@ -6,15 +6,15 @@ interface
 
 
   type
-    TWeb=class(TObject)
+    TWeb=class
     private
       FHttp:TIdHTTP;
-    protected
-      destructor Destroy; override;
     public
       constructor Create;
+      destructor Destroy; override;
       function GetStream(const url:string):TStream;
     end;
+
 
 implementation
 
