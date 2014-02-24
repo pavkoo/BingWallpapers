@@ -19,6 +19,9 @@ interface
      property ImageFilePath:String  read GetImageFilePath;
      property LocalImages:TStringList read  GetLocalImages;
    end;
+
+   var
+     Config : TBingConfiger;
 implementation
 
 const
@@ -27,8 +30,6 @@ const
   INIFILEIMAGEDIR = 'ImagePath';
   INIFILEDATASECTION = 'localData';
   INIFILEIMAGES = 'Images';
-var
-  Config : TBingConfiger;
 { TBingConfiger }
 
 constructor TBingConfiger.Create;
