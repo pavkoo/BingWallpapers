@@ -3,15 +3,17 @@ unit Main;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Gestures, System.Actions, FMX.ActnList, IdBaseComponent, IdComponent,
-  IdTCPConnection, IdTCPClient, IdHTTP,FMX.Platform, FMX.Layouts, FMX.ExtCtrls,
+  IdTCPConnection, IdTCPClient, IdHTTP, FMX.Platform, FMX.Layouts, FMX.ExtCtrls,
   FMX.Effects, FMX.Filter.Effects, FMX.Ani, FMX.ListView.Types, FMX.ListView;
 
 type
-             //启动    //等待     //主    //bing详细 //选择国家 //关于
-  TUIStyle = (TUIFirst,TUIWaiting,TUIMain,TUIDetail,TUICountry,TUIAbout);
+  // 启动    //等待     //主    //bing详细 //选择国家 //关于
+  TUIStyle = (TUIFirst, TUIWaiting, TUIMain, TUIDetail, TUICountry, TUIAbout);
+
   TfrmMain = class(TForm)
     imgMain: TImage;
     GestureManagerMain: TGestureManager;
@@ -21,139 +23,80 @@ type
     txt1Title: TText;
     lyImageInfo: TLayout;
     txt: TText;
-    shdwfct2: TShadowEffect;
     lyDetail: TLayout;
     shdwfct1: TShadowEffect;
     InvertEffect1: TInvertEffect;
     bottomShadow: TRectangle;
-    FloatAnimation: TFloatAnimation;
+    FloatAnimationEnter: TFloatAnimation;
     GaussianBlurEffect: TGaussianBlurEffect;
     ActionUp: TAction;
     ActionDown: TAction;
-    FloatAnimation1: TFloatAnimation;
+    FloatAnimationExit: TFloatAnimation;
+    Desc1: TText;
+    Query1: TText;
+    Desc3: TText;
+    Query2: TText;
+    Desc2: TText;
+    Query3: TText;
+    Desc4: TText;
+    Query4: TText;
+    RectangleDetail: TRectangle;
+    ShadowEffect1: TShadowEffect;
+    ShadowEffect2: TShadowEffect;
+    ShadowEffect3: TShadowEffect;
+    ShadowEffect4: TShadowEffect;
+    ShadowEffect5: TShadowEffect;
+    ShadowEffect6: TShadowEffect;
+    ShadowEffect7: TShadowEffect;
+    ShadowEffect8: TShadowEffect;
+    Rectangle1: TRectangle;
+    Rectangle2: TRectangle;
+    Rectangle4: TRectangle;
     procedure FormCreate(Sender: TObject);
     procedure lyImageInfoMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Single);
     procedure lyImageInfoMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Single);
-    procedure lyImageInfoMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Single);
+    procedure lyImageInfoMouseMove(Sender: TObject; Shift: TShiftState;
+      X, Y: Single);
     procedure FormShow(Sender: TObject);
     procedure ActionUpExecute(Sender: TObject);
     procedure ActionDownExecute(Sender: TObject);
   private
     { Private declarations }
-    FCurrentUIStyle:TUIStyle;
-    ISmouseDown:Boolean;
-    FMouseDownPoint:TPointf;
-    procedure SetCurrentUIStyle(const Value:TUIStyle);
-    procedure ComponentEnter(const Value: TUIStyle);
-    procedure ComponentQuit(const Value: TUIStyle);
+    FCurrentUIStyle: TUIStyle;
+    ISmouseDown: Boolean;
+    FMouseDownPoint: TPointf;
+    procedure SetCurrentUIStyle(const Value: TUIStyle);
+    procedure GoToCurrentUI(const LastUI, CurrentUI: TUIStyle);
   public
     { Public declarations }
-    property CurrentUIStyle:TUIStyle read FCurrentUIStyle write SetCurrentUIStyle;
+    property CurrentUIStyle: TUIStyle read FCurrentUIStyle
+      write SetCurrentUIStyle;
   end;
 
 var
   frmMain: TfrmMain;
 
 const
-  ABSPOSITIONYIMAGEINFO = 120;
+  ABSPOSITIONYIMAGEINFO = 80;
   AniDuiation = 0.5;
 
 implementation
-{$R *.fmx}
 
+{$R *.fmx}
 { TfrmMain }
 
 procedure TfrmMain.ActionDownExecute(Sender: TObject);
 begin
   CurrentUIStyle := TUIMain;
+  ISmouseDown := False;
 end;
 
 procedure TfrmMain.ActionUpExecute(Sender: TObject);
 begin
   CurrentUIStyle := TUIDetail;
-end;
-
-procedure TfrmMain.ComponentEnter(const Value: TUIStyle);
-begin
-  case Value of
-     TUIFirst:
-      begin
-      end;
-     TUIWaiting:
-      begin
-      end;
-     TUIMain:
-      begin
-        bottomShadow.Opacity := 0.8;
-        GaussianBlurEffect.BlurAmount :=  0.01 ;
-        if assigned(FloatAnimation) then FloatAnimation.Free;
-        FloatAnimation := TFloatAnimation.Create(nil);
-        FloatAnimation.Parent :=  lyImageInfo;
-        lyImageInfo.Visible := True;
-        lyImageInfo.Position.Y := Self.Height;
-        FloatAnimation.PropertyName := 'Position.Y';
-        FloatAnimation.Duration := AniDuiation;
-        FloatAnimation.Delay := 0.5;
-        FloatAnimation.Interpolation := TInterpolationType.itLinear;
-        FloatAnimation.StartValue := Self.Height;
-        FloatAnimation.StopValue := Self.Height - ABSPOSITIONYIMAGEINFO;
-        FloatAnimation.Start;
-      end;
-     TUIDetail:
-      begin
-        if assigned(FloatAnimation) then FloatAnimation.Free;
-        FloatAnimation := TFloatAnimation.Create(nil);
-        FloatAnimation.Parent :=  lyImageInfo;
-        FloatAnimation.PropertyName := 'Height';
-        FloatAnimation.Duration := AniDuiation;
-        FloatAnimation.Interpolation := TInterpolationType.itLinear;
-        FloatAnimation.StartFromCurrent := True;
-        FloatAnimation.StopValue := Self.Height- ABSPOSITIONYIMAGEINFO;
-        FloatAnimation.Start;
-      end;
-     TUICountry:
-      begin
-      end;
-     TUIAbout:
-      begin
-      end;
-  end;
-end;
-
-procedure TfrmMain.ComponentQuit(const Value: TUIStyle);
-begin
-  case Value of
-     TUIFirst:
-      begin
-      end;
-     TUIWaiting:
-      begin
-      end;
-     TUIMain:
-      begin
-      end;
-     TUIDetail:
-      begin
-        if assigned(FloatAnimation) then FloatAnimation.Free;
-        FloatAnimation := TFloatAnimation.Create(nil);
-        FloatAnimation.Parent :=  lyImageInfo;
-        FloatAnimation.PropertyName := 'Height';
-        FloatAnimation.Duration := AniDuiation;
-        FloatAnimation.Interpolation := TInterpolationType.itLinear;
-        FloatAnimation.StartValue := Self.Height;
-        FloatAnimation.StopValue := ABSPOSITIONYIMAGEINFO;
-        FloatAnimation.Start;
-      end;
-     TUICountry:
-      begin
-      end;
-     TUIAbout:
-      begin
-      end;
-  end;
+  ISmouseDown := False;
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
@@ -168,25 +111,83 @@ begin
   CurrentUIStyle := TUIMain;
 end;
 
+procedure TfrmMain.GoToCurrentUI(const LastUI, CurrentUI: TUIStyle);
+begin
+  case CurrentUI of
+    TUIMain:
+      begin
+        GaussianBlurEffect.Enabled := False;
+        bottomShadow.Opacity := 0.7;
+        if LastUI = TUIFirst then
+        begin
+          if assigned(FloatAnimationEnter) then
+            FloatAnimationEnter.Free;
+          FloatAnimationEnter := TFloatAnimation.Create(nil);
+          FloatAnimationEnter.Parent := lyImageInfo;
+          lyImageInfo.Position.Y := Self.Height;
+          FloatAnimationEnter.PropertyName := 'Position.Y';
+          FloatAnimationEnter.Duration := AniDuiation;
+          FloatAnimationEnter.Delay := AniDuiation;
+          FloatAnimationEnter.Interpolation := TInterpolationType.itLinear;
+          FloatAnimationEnter.StartValue := Self.Height;
+          FloatAnimationEnter.StopValue := Self.Height -
+            ABSPOSITIONYIMAGEINFO - 40;
+          FloatAnimationEnter.Start;
+        end
+        else if LastUI = TUIDetail then
+        begin
+          if assigned(FloatAnimationExit) then
+            FloatAnimationExit.Free;
+          FloatAnimationExit := TFloatAnimation.Create(nil);
+          FloatAnimationExit.Parent := lyImageInfo;
+          FloatAnimationExit.PropertyName := 'Height';
+          FloatAnimationExit.Duration := AniDuiation;
+          FloatAnimationExit.Interpolation := TInterpolationType.itLinear;
+          FloatAnimationExit.StartFromCurrent := True;
+          FloatAnimationExit.StopValue := ABSPOSITIONYIMAGEINFO;
+          FloatAnimationExit.Start;
+        end;
+      end;
+    TUIDetail:
+      begin
+        GaussianBlurEffect.Enabled := True;
+        GaussianBlurEffect.BlurAmount := 1;
+        bottomShadow.Opacity := 0.4;
+        if LastUI = TUIMain then
+        begin
+          if assigned(FloatAnimationEnter) then FloatAnimationEnter.Free;
+          FloatAnimationEnter := TFloatAnimation.Create(nil);
+          FloatAnimationEnter.Parent := lyImageInfo;
+          FloatAnimationEnter.PropertyName := 'Height';
+          FloatAnimationEnter.Duration := AniDuiation;
+          FloatAnimationEnter.Interpolation := TInterpolationType.itLinear;
+          FloatAnimationEnter.StartFromCurrent := True;
+          FloatAnimationEnter.StopValue := Self.Height - ABSPOSITIONYIMAGEINFO;
+          FloatAnimationEnter.Start;
+        end;
+      end;
+  end;
+end;
+
 procedure TfrmMain.lyImageInfoMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Single);
 begin
   if Button = TMouseButton.mbLeft then
   begin
-    ISmouseDown:= True;
+    ISmouseDown := True;
     FMouseDownPoint.X := X;
     FMouseDownPoint.Y := Y;
-    bottomShadow.Opacity := 0.4;
   end;
 end;
 
-procedure TfrmMain.lyImageInfoMouseMove(Sender: TObject; Shift: TShiftState; X,
-  Y: Single);
+procedure TfrmMain.lyImageInfoMouseMove(Sender: TObject; Shift: TShiftState;
+  X, Y: Single);
 begin
   if ISmouseDown then
   begin
-    lyImageInfo.Height := lyImageInfo.Height + (FMouseDownPoint.Y-y);
-    GaussianBlurEffect.BlurAmount :=  0.01 + (Self.Height - lyImageInfo.Position.Y) / Self.Height;
+    lyImageInfo.Height := lyImageInfo.Height + (FMouseDownPoint.Y - Y);
+    GaussianBlurEffect.BlurAmount := 0.01 +
+      (Self.Height - lyImageInfo.Position.Y) / Self.Height;
   end;
 end;
 
@@ -198,13 +199,11 @@ end;
 
 procedure TfrmMain.SetCurrentUIStyle(const Value: TUIStyle);
 begin
-  if FCurrentUIStyle<>Value then
+  if FCurrentUIStyle <> Value then
   begin
-    ComponentQuit(FCurrentUIStyle);
-    ComponentEnter(Value);
+    GoToCurrentUI(FCurrentUIStyle, Value);
     FCurrentUIStyle := Value;
   end;
 end;
-
 
 end.

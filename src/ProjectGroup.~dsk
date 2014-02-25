@@ -12,42 +12,66 @@ File_9=TSourceModule,'D:\Code\鹏程\BingWallpapers\src\OpenSource\mutil\Unit3.p
 File_10=TSourceModule,'D:\Code\鹏程\BingWallpapers\src\OpenSource\20130728223554_JsonTesting(Source)\untMain.pas',0,1,82,12,154,0,0,,
 
 [Modules]
-Module0=D:\Code\鹏程\BingWallpapers\src\ProjectCode\Main.pas
-Module1=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Forms.pas
-Module2=D:\Code\鹏程\BingWallpapers\src\ProjectCode\proBingWallpapers.dproj
-Module3=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uConst.pas
-Module4=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Filter.Effects.pas
-Module5=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uWebUtils.pas
-Module6=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uBingConfig.pas
-Module7=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uUIAdapter.pas
-Module8=h:\program files\embarcadero\rad studio\12.0\source\rtl\common\System.IniFiles.pas
-Module9=h:\program files\embarcadero\rad studio\12.0\source\rtl\win\Winapi.Windows.pas
-Module10=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.pas
-Module11=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.SysUtils.pas
-Module12=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uBing.pas
-Module13=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperObject.pas
-Module14=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperJSON.pas
-Module15=h:\program files\embarcadero\rad studio\12.0\source\rtl\common\System.IOUtils.pas
-Module16=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Types.pas
-Module17=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.Types.pas
-Module18=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Platform.pas
-Module19=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Platform.Win.pas
-Module20=default.htm
-Count=21
+Module0=D:\Work\branches\published\3.0\QFBJ_4\src\XwExistUnit.pas
+Module1=D:\Work\branches\published\3.0\QFBJ_4\src\XwLayoutAccess.pas
+Module2=D:\Work\branches\published\3.0\QFBJ_4\src\xwVchGrid.pas
+Module3=D:\Work\branches\published\3.0\QFBJ_4\src\xwGFunc.pas
+Module4=D:\Code\鹏程\BingWallpapers\src\ProjectCode\Main.pas
+Module5=D:\Code\鹏程\BingWallpapers\src\ProjectCode\proBingWallpapers.dproj
+Module6=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Forms.pas
+Module7=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uConst.pas
+Module8=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Filter.Effects.pas
+Module9=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uWebUtils.pas
+Module10=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uBingConfig.pas
+Module11=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uUIAdapter.pas
+Module12=h:\program files\embarcadero\rad studio\12.0\source\rtl\common\System.IniFiles.pas
+Module13=h:\program files\embarcadero\rad studio\12.0\source\rtl\win\Winapi.Windows.pas
+Module14=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.pas
+Module15=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.SysUtils.pas
+Module16=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uBing.pas
+Module17=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperObject.pas
+Module18=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperJSON.pas
+Module19=h:\program files\embarcadero\rad studio\12.0\source\rtl\common\System.IOUtils.pas
+Module20=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Types.pas
+Module21=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.Types.pas
+Module22=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Platform.pas
+Module23=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Platform.Win.pas
+Module24=default.htm
+Count=25
 EditWindowCount=1
+
+[D:\Work\branches\published\3.0\QFBJ_4\src\XwExistUnit.pas]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
+
+[D:\Work\branches\published\3.0\QFBJ_4\src\XwLayoutAccess.pas]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
+
+[D:\Work\branches\published\3.0\QFBJ_4\src\xwVchGrid.pas]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
+
+[D:\Work\branches\published\3.0\QFBJ_4\src\xwGFunc.pas]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
 
 [D:\Code\鹏程\BingWallpapers\src\ProjectCode\Main.pas]
 ModuleType=TSourceModule
 FormState=1
-FormOnTop=1
+FormOnTop=0
+
+[D:\Code\鹏程\BingWallpapers\src\ProjectCode\proBingWallpapers.dproj]
+ModuleType=TBaseProject
 
 [h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Forms.pas]
 ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
-
-[D:\Code\鹏程\BingWallpapers\src\ProjectCode\proBingWallpapers.dproj]
-ModuleType=TBaseProject
 
 [D:\Code\鹏程\BingWallpapers\src\ProjectCode\uConst.pas]
 ModuleType=TSourceModule
@@ -138,8 +162,8 @@ FormOnTop=0
 ModuleType=TURLModule
 
 [EditWindow0]
-ViewCount=21
-CurrentEditView=D:\Code\鹏程\BingWallpapers\src\ProjectCode\Main.pas
+ViewCount=25
+CurrentEditView=D:\Work\branches\published\3.0\QFBJ_4\src\XwExistUnit.pas
 View0=0
 View1=1
 View2=2
@@ -161,6 +185,10 @@ View17=17
 View18=18
 View19=19
 View20=20
+View21=21
+View22=22
+View23=23
+View24=24
 PercentageSizes=1
 Create=1
 Visible=1
@@ -197,7 +225,7 @@ WelcomePageURL=bds:/default.htm
 [View1]
 CustomEditViewType=TEditView
 Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uConst.pas
-CursorX=6
+CursorX=1
 CursorY=53
 TopLine=40
 LeftCol=1
@@ -219,7 +247,7 @@ EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperJSON.pas
 [View3]
 CustomEditViewType=TEditView
 Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\XSuperObject.pas
-CursorX=94
+CursorX=19
 CursorY=1317
 TopLine=1287
 LeftCol=1
@@ -252,7 +280,7 @@ EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uUIAdapter.pas
 [View6]
 CustomEditViewType=TEditView
 Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uWebUtils.pas
-CursorX=16
+CursorX=1
 CursorY=18
 TopLine=1
 LeftCol=1
@@ -274,15 +302,59 @@ EditViewName=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.
 [View8]
 CustomEditViewType=TEditView
 Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\Main.pas
-CursorX=22
-CursorY=13
-TopLine=19
+CursorX=20
+CursorY=56
+TopLine=45
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=Borland.FormDesignerView
+EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\Main.pas
 
 [View9]
+CustomEditViewType=TEditView
+Module=D:\Work\branches\published\3.0\QFBJ_4\src\XwLayoutAccess.pas
+CursorX=26
+CursorY=263
+TopLine=233
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Work\branches\published\3.0\QFBJ_4\src\XwLayoutAccess.pas
+
+[View10]
+CustomEditViewType=TEditView
+Module=D:\Work\branches\published\3.0\QFBJ_4\src\XwExistUnit.pas
+CursorX=44
+CursorY=929
+TopLine=920
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Work\branches\published\3.0\QFBJ_4\src\XwExistUnit.pas
+
+[View11]
+CustomEditViewType=TEditView
+Module=D:\Work\branches\published\3.0\QFBJ_4\src\xwVchGrid.pas
+CursorX=18
+CursorY=400
+TopLine=373
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Work\branches\published\3.0\QFBJ_4\src\xwVchGrid.pas
+
+[View12]
+CustomEditViewType=TEditView
+Module=D:\Work\branches\published\3.0\QFBJ_4\src\xwGFunc.pas
+CursorX=3
+CursorY=117
+TopLine=97
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Work\branches\published\3.0\QFBJ_4\src\xwGFunc.pas
+
+[View13]
 CustomEditViewType=TEditView
 Module=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Forms.pas
 CursorX=1
@@ -293,7 +365,7 @@ Elisions=
 Bookmarks=
 EditViewName=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Forms.pas
 
-[View10]
+[View14]
 CustomEditViewType=TEditView
 Module=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Filter.Effects.pas
 CursorX=1
@@ -304,7 +376,7 @@ Elisions=
 Bookmarks=
 EditViewName=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Filter.Effects.pas
 
-[View11]
+[View15]
 CustomEditViewType=TEditView
 Module=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.SysUtils.pas
 CursorX=6
@@ -315,10 +387,10 @@ Elisions=
 Bookmarks=
 EditViewName=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.SysUtils.pas
 
-[View12]
+[View16]
 CustomEditViewType=TEditView
 Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uBingConfig.pas
-CursorX=44
+CursorX=6
 CursorY=61
 TopLine=45
 LeftCol=1
@@ -326,7 +398,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\uBingConfig.pas
 
-[View13]
+[View17]
 CustomEditViewType=TEditView
 Module=h:\program files\embarcadero\rad studio\12.0\source\rtl\common\System.IniFiles.pas
 CursorX=1
@@ -337,7 +409,7 @@ Elisions=
 Bookmarks=
 EditViewName=h:\program files\embarcadero\rad studio\12.0\source\rtl\common\System.IniFiles.pas
 
-[View14]
+[View18]
 CustomEditViewType=TEditView
 Module=h:\program files\embarcadero\rad studio\12.0\source\rtl\win\Winapi.Windows.pas
 CursorX=10
@@ -348,7 +420,7 @@ Elisions=
 Bookmarks=
 EditViewName=h:\program files\embarcadero\rad studio\12.0\source\rtl\win\Winapi.Windows.pas
 
-[View15]
+[View19]
 CustomEditViewType=TEditView
 Module=h:\program files\embarcadero\rad studio\12.0\source\rtl\common\System.IOUtils.pas
 CursorX=1
@@ -359,7 +431,7 @@ Elisions=
 Bookmarks=
 EditViewName=h:\program files\embarcadero\rad studio\12.0\source\rtl\common\System.IOUtils.pas
 
-[View16]
+[View20]
 CustomEditViewType=TEditView
 Module=D:\Code\鹏程\BingWallpapers\src\ProjectCode\proBingWallpapers.dpr
 CursorX=8
@@ -370,7 +442,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\Code\鹏程\BingWallpapers\src\ProjectCode\proBingWallpapers.dpr
 
-[View17]
+[View21]
 CustomEditViewType=TEditView
 Module=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Types.pas
 CursorX=24
@@ -381,7 +453,7 @@ Elisions={{4008,0},{4141,11},{'implementation of purgatory'}}{{5977,0},{6499,11}
 Bookmarks=
 EditViewName=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Types.pas
 
-[View18]
+[View22]
 CustomEditViewType=TEditView
 Module=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.Types.pas
 CursorX=1
@@ -392,7 +464,7 @@ Elisions=
 Bookmarks=
 EditViewName=h:\program files\embarcadero\rad studio\12.0\SOURCE\RTL\SYS\System.Types.pas
 
-[View19]
+[View23]
 CustomEditViewType=TEditView
 Module=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Platform.pas
 CursorX=3
@@ -403,7 +475,7 @@ Elisions=
 Bookmarks=
 EditViewName=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Platform.pas
 
-[View20]
+[View24]
 CustomEditViewType=TEditView
 Module=h:\program files\embarcadero\rad studio\12.0\source\fmx\FMX.Platform.Win.pas
 CursorX=3
@@ -553,11 +625,6 @@ LRDockWidth=1896
 Dockable=1
 StayOnTop=0
 SplitPos=111
-
-[PropInspDesignerSelection]
-ArrangeBy=Name
-SelectedItem=Caption,
-ExpandedItems=Border=0,Fill=0,FormFactor=0,"LiveBindings Designer=0",Padding=0
 
 [TFileExplorerForm]
 PercentageSizes=1
