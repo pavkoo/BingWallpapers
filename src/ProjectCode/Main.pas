@@ -149,8 +149,8 @@ end;
 procedure TfrmMain.ActionBackExecute(Sender: TObject);
 begin
   // 创建线程
-//  CurrentUIStyle := TUIWaiting;
-//  CurrentUIStyle := TUIMain
+  CurrentUIStyle := TUIWaiting;
+  CurrentUIStyle := TUIMain
 end;
 
 procedure TfrmMain.ActionCountryDownExecute(Sender: TObject);
