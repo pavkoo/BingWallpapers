@@ -15,6 +15,9 @@
         <Projects Include="OpenSource\mutil\Project3.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="C:\Users\Public\Documents\RAD Studio\12.0\Samples\FireMonkey\ShaderFilters\ShaderFilters.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,14 +62,23 @@
     <Target Name="Project3:Make">
         <MSBuild Projects="OpenSource\mutil\Project3.dproj" Targets="Make"/>
     </Target>
+    <Target Name="ShaderFilters">
+        <MSBuild Projects="C:\Users\Public\Documents\RAD Studio\12.0\Samples\FireMonkey\ShaderFilters\ShaderFilters.dproj"/>
+    </Target>
+    <Target Name="ShaderFilters:Clean">
+        <MSBuild Projects="C:\Users\Public\Documents\RAD Studio\12.0\Samples\FireMonkey\ShaderFilters\ShaderFilters.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ShaderFilters:Make">
+        <MSBuild Projects="C:\Users\Public\Documents\RAD Studio\12.0\Samples\FireMonkey\ShaderFilters\ShaderFilters.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="proBingWallpapers;Project1;JsonTesting;Project3"/>
+        <CallTarget Targets="proBingWallpapers;Project1;JsonTesting;Project3;ShaderFilters"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="proBingWallpapers:Clean;Project1:Clean;JsonTesting:Clean;Project3:Clean"/>
+        <CallTarget Targets="proBingWallpapers:Clean;Project1:Clean;JsonTesting:Clean;Project3:Clean;ShaderFilters:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="proBingWallpapers:Make;Project1:Make;JsonTesting:Make;Project3:Make"/>
+        <CallTarget Targets="proBingWallpapers:Make;Project1:Make;JsonTesting:Make;Project3:Make;ShaderFilters:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -211,8 +211,8 @@ SplitPos=111
 
 [PropInspDesignerSelection]
 ArrangeBy=Name
-SelectedItem=Font,
-ExpandedItems=Anchors=0,Font=0,LiveBindings=0,"LiveBindings Designer=0",Margins=0,Padding=0,Position=0,RotationCenter=0,Scale=0,Touch=0
+SelectedItem=Texture,
+ExpandedItems="LiveBindings Designer=0"
 
 [TFileExplorerForm]
 PercentageSizes=1

@@ -8,7 +8,9 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Gestures, System.Actions, FMX.ActnList, IdBaseComponent, IdComponent,
   IdTCPConnection, IdTCPClient, IdHTTP, FMX.Platform, FMX.Layouts, FMX.ExtCtrls,
-  FMX.Effects, FMX.Filter.Effects, FMX.Ani, FMX.ListView.Types, FMX.ListView;
+  FMX.Effects, FMX.Filter.Effects, FMX.Ani, FMX.ListView.Types, FMX.ListView,
+  FMX.StdCtrls, FMX.Filter, FMX.Controls3D, FMX.Layers3D, FMX.Objects3D,
+  FMX.Viewport3D, FMX.MaterialSources,FMX.Types3D,System.UIConsts;
 
 type
   // 启动    //等待     //主    //bing详细 //选择国家 //关于
@@ -25,7 +27,6 @@ type
     txt: TText;
     lyDetail: TLayout;
     shdwfct1: TShadowEffect;
-    InvertEffect1: TInvertEffect;
     bottomShadow: TRectangle;
     FloatAnimationEnter: TFloatAnimation;
     GaussianBlurEffect: TGaussianBlurEffect;
@@ -52,6 +53,47 @@ type
     Rectangle1: TRectangle;
     Rectangle2: TRectangle;
     Rectangle4: TRectangle;
+    RippleEffect: TRippleEffect;
+    RippleFloatAnimation: TFloatAnimation;
+    FloatAnimationAmplitude: TFloatAnimation;
+    FadeTransitionEffect: TFadeTransitionEffect;
+    imgTarget: TImage;
+    imgSource: TImage;
+    Viewport3D: TViewport3D;
+    earth: TSphere;
+    FloatAnimation1: TFloatAnimation;
+    LightMaterialSource1: TLightMaterialSource;
+    Light1: TLight;
+    ShadowEffect9: TShadowEffect;
+    LayoutSetting: TLayout;
+    imgEarth: TImage;
+    imgBackground: TImage;
+    LayoutCountry: TLayout;
+    Camera1: TCamera;
+    ShadowEffect10: TShadowEffect;
+    rectBK: TRectangle;
+    txtJP: TText;
+    ActionhideCountry: TAction;
+    ActionCountryDown: TAction;
+    txtCa: TText;
+    txtDe: TText;
+    txtUs: TText;
+    txtEng: TText;
+    txtNZ: TText;
+    txtAU: TText;
+    rectLine: TRectangle;
+    Rectangle6: TRectangle;
+    Rectangle9: TRectangle;
+    Rectangle11: TRectangle;
+    Rectangle12: TRectangle;
+    LayoutList: TLayout;
+    Rectangle3: TRectangle;
+    Rectangle8: TRectangle;
+    InnerGlowEffectMain: TInnerGlowEffect;
+    Button1: TButton;
+    ShadowEffect11: TShadowEffect;
+    txtChina: TText;
+    Rectangle7: TRectangle;
     procedure FormCreate(Sender: TObject);
     procedure lyImageInfoMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Single);
@@ -62,13 +104,25 @@ type
     procedure FormShow(Sender: TObject);
     procedure ActionUpExecute(Sender: TObject);
     procedure ActionDownExecute(Sender: TObject);
+    procedure ActionBackExecute(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure ActionForawrdExecute(Sender: TObject);
+    procedure ActionhideCountryExecute(Sender: TObject);
+    procedure ActionCountryDownExecute(Sender: TObject);
+    procedure imgEarthClick(Sender: TObject);
+    procedure imgBackgroundClick(Sender: TObject);
   private
     { Private declarations }
     FCurrentUIStyle: TUIStyle;
     ISmouseDown: Boolean;
+    Filter: TFilter;
     FMouseDownPoint: TPointf;
+    TransitionAni: TFloatAnimation;
     procedure SetCurrentUIStyle(const Value: TUIStyle);
     procedure GoToCurrentUI(const LastUI, CurrentUI: TUIStyle);
+    procedure ShowTitleBar;
+    procedure HideTitleBar;
+    procedure TransitionAniOnProgress(Sender: TObject);
   public
     { Public declarations }
     property CurrentUIStyle: TUIStyle read FCurrentUIStyle
@@ -79,7 +133,7 @@ var
   frmMain: TfrmMain;
 
 const
-  ABSPOSITIONYIMAGEINFO = 80;
+  ABSPOSITIONYIMAGEINFO = 100;
   AniDuiation = 0.5;
 
 implementation
@@ -87,10 +141,32 @@ implementation
 {$R *.fmx}
 { TfrmMain }
 
+procedure TfrmMain.ActionhideCountryExecute(Sender: TObject);
+begin
+  CurrentUIStyle := TUIMain;
+end;
+
+procedure TfrmMain.ActionBackExecute(Sender: TObject);
+begin
+  // 创建线程
+//  CurrentUIStyle := TUIWaiting;
+//  CurrentUIStyle := TUIMain
+end;
+
+procedure TfrmMain.ActionCountryDownExecute(Sender: TObject);
+begin
+  CurrentUIStyle := TUICountry;
+end;
+
 procedure TfrmMain.ActionDownExecute(Sender: TObject);
 begin
   CurrentUIStyle := TUIMain;
   ISmouseDown := False;
+end;
+
+procedure TfrmMain.ActionForawrdExecute(Sender: TObject);
+begin
+  CurrentUIStyle := TUIWaiting;
 end;
 
 procedure TfrmMain.ActionUpExecute(Sender: TObject);
@@ -99,15 +175,27 @@ begin
   ISmouseDown := False;
 end;
 
+procedure TfrmMain.Button1Click(Sender: TObject);
+begin
+  CurrentUIStyle := TUIMain;
+end;
+
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   FCurrentUIStyle := TUIFirst;
   ISmouseDown := False;
+  Filter := TFilterManager.FilterByName('FadeTransition');
+  imgTarget.Bitmap.LoadFromFile('BingWallpaper.jpg');
+  imgSource.Bitmap.LoadFromFile('test.jpg');
+  imgMain.Bitmap.Assign(imgSource.Bitmap);
+  Filter.ValuesAsBitmap['Input'] := imgSource.Bitmap;
+  Filter.ValuesAsBitmap['Target'] := imgTarget.Bitmap;
+  Filter.ValuesAsFloat['Progress'] := 0;
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
-  Application.ProcessMessages;
+  application.ProcessMessages;
   CurrentUIStyle := TUIMain;
 end;
 
@@ -120,53 +208,110 @@ begin
         bottomShadow.Opacity := 0.7;
         if LastUI = TUIFirst then
         begin
-          if assigned(FloatAnimationEnter) then
-            FloatAnimationEnter.Free;
-          FloatAnimationEnter := TFloatAnimation.Create(nil);
-          FloatAnimationEnter.Parent := lyImageInfo;
-          lyImageInfo.Position.Y := Self.Height;
-          FloatAnimationEnter.PropertyName := 'Position.Y';
-          FloatAnimationEnter.Duration := AniDuiation;
-          FloatAnimationEnter.Delay := AniDuiation;
-          FloatAnimationEnter.Interpolation := TInterpolationType.itLinear;
-          FloatAnimationEnter.StartValue := Self.Height;
-          FloatAnimationEnter.StopValue := Self.Height -
-            ABSPOSITIONYIMAGEINFO - 40;
-          FloatAnimationEnter.Start;
+          ShowTitleBar;
         end
         else if LastUI = TUIDetail then
         begin
-          if assigned(FloatAnimationExit) then
-            FloatAnimationExit.Free;
-          FloatAnimationExit := TFloatAnimation.Create(nil);
-          FloatAnimationExit.Parent := lyImageInfo;
-          FloatAnimationExit.PropertyName := 'Height';
-          FloatAnimationExit.Duration := AniDuiation;
-          FloatAnimationExit.Interpolation := TInterpolationType.itLinear;
-          FloatAnimationExit.StartFromCurrent := True;
-          FloatAnimationExit.StopValue := ABSPOSITIONYIMAGEINFO;
-          FloatAnimationExit.Start;
+          lyImageInfo.AnimateFloat('Height', ABSPOSITIONYIMAGEINFO,
+            AniDuiation,TAnimationType.atOut,TInterpolationType.itBack);
+        end
+        else if LastUI = TUIWaiting then
+        begin
+          RippleFloatAnimation.Stop;
+          RippleEffect.Phase := 0;
+          FloatAnimationAmplitude.Delay := 0;
+          FloatAnimationAmplitude.Duration := AniDuiation;
+          FloatAnimationAmplitude.StopValue := 0;
+          FloatAnimationAmplitude.StartFromCurrent := True;
+          FloatAnimationAmplitude.Start;
+
+          if (TransitionAni <> nil) then
+            FreeAndNil(TransitionAni);
+          TransitionAni := TFloatAnimation.Create(button1);
+          TransitionAni.OnProcess := TransitionAniOnProgress;
+          TransitionAni.Parent := button1;
+          TransitionAni.StartValue := 0;
+          TransitionAni.StopValue := 100;
+          TransitionAni.PropertyName := 'Width';
+          TransitionAni.Duration := AniDuiation * 2;
+          TransitionAni.Enabled := True;
+          TransitionAni.Start;
+
+          ShowTitleBar;
+        end
+        else if LastUI = TUICountry then
+        begin
+          LayoutCountry.AnimateFloat('Opacity', 0, AniDuiation);
+          LayoutCountry.AnimateFloatWait('Height', 0, AniDuiation);
+          // 上面那个动画，会导致lyImageInfo控件去执行relaign方法，使得lyImageInfo的位置可见
+          lyImageInfo.Opacity := 0;
+          lyImageInfo.Visible := True;
+          lyImageInfo.Position.Y := Self.Height;
+          lyImageInfo.Opacity := 1;
+          ShowTitleBar;
         end;
       end;
     TUIDetail:
       begin
         GaussianBlurEffect.Enabled := True;
-        GaussianBlurEffect.BlurAmount := 1;
+        GaussianBlurEffect.AnimateFloat('BlurAmount',1,AniDuiation);
         bottomShadow.Opacity := 0.4;
         if LastUI = TUIMain then
         begin
-          if assigned(FloatAnimationEnter) then FloatAnimationEnter.Free;
-          FloatAnimationEnter := TFloatAnimation.Create(nil);
-          FloatAnimationEnter.Parent := lyImageInfo;
-          FloatAnimationEnter.PropertyName := 'Height';
-          FloatAnimationEnter.Duration := AniDuiation;
-          FloatAnimationEnter.Interpolation := TInterpolationType.itLinear;
-          FloatAnimationEnter.StartFromCurrent := True;
-          FloatAnimationEnter.StopValue := Self.Height - ABSPOSITIONYIMAGEINFO;
-          FloatAnimationEnter.Start;
+          lyImageInfo.AnimateFloat('Height',
+            Self.Height - ABSPOSITIONYIMAGEINFO, AniDuiation,TAnimationType.atOut,TInterpolationType.itBack);
         end;
       end;
+    TUIWaiting:
+      begin
+        if LastUI = TUIMain then
+        begin
+          GaussianBlurEffect.Enabled := False;
+          HideTitleBar;
+          RippleEffect.Enabled := True;
+
+          FloatAnimationAmplitude.Inverse := False;
+          FloatAnimationAmplitude.Enabled := True;
+          FloatAnimationAmplitude.StartValue := 0;
+          FloatAnimationAmplitude.StopValue := 0.12;
+          FloatAnimationAmplitude.Duration := AniDuiation * 5;
+          FloatAnimationAmplitude.Delay := AniDuiation;
+          FloatAnimationAmplitude.Start;
+
+          RippleFloatAnimation.Duration := AniDuiation * 5;
+          RippleFloatAnimation.Enabled := True;
+          RippleFloatAnimation.Loop := True;
+          RippleFloatAnimation.Start;
+        end;
+      end;
+    TUICountry:
+      begin
+        lyImageInfo.AnimateFloatWait('Position.Y', Self.Height, AniDuiation);
+        lyImageInfo.Visible := False;
+        LayoutCountry.AnimateFloat('Opacity', 1, AniDuiation);
+        LayoutCountry.AnimateFloatWait('Height', Self.Height - ABSPOSITIONYIMAGEINFO, AniDuiation,TAnimationType.atInOut,TInterpolationType.itBack);
+      end;
   end;
+end;
+
+procedure TfrmMain.HideTitleBar;
+begin
+  LayoutSetting.AnimateFloat('RotationAngle',-90,AniDuiation,TAnimationType.atIn,TInterpolationType.itBack);
+  lyImageInfo.AnimateFloatDelay('Position.Y', Self.Height, AniDuiation,0.2);
+end;
+
+procedure TfrmMain.imgBackgroundClick(Sender: TObject);
+begin
+  InnerGlowEffectMain.Enabled := True;
+  InnerGlowEffectMain.AnimateFloatWait('Softness',9,AniDuiation*2);
+  //shezhibizhi
+  InnerGlowEffectMain.AnimateFloatWait('Softness',0,AniDuiation*2);
+  InnerGlowEffectMain.Enabled := False;
+end;
+
+procedure TfrmMain.imgEarthClick(Sender: TObject);
+begin
+  CurrentUIStyle := TUICountry;
 end;
 
 procedure TfrmMain.lyImageInfoMouseDown(Sender: TObject; Button: TMouseButton;
@@ -204,6 +349,20 @@ begin
     GoToCurrentUI(FCurrentUIStyle, Value);
     FCurrentUIStyle := Value;
   end;
+end;
+
+procedure TfrmMain.ShowTitleBar;
+begin
+  lyImageInfo.Position.Y := Self.Height;
+  lyImageInfo.AnimateFloat('Position.Y',
+    Self.Height - ABSPOSITIONYIMAGEINFO - 40,  AniDuiation,TAnimationType.atInOut,TInterpolationType.itBack);
+  LayoutSetting.AnimateFloatDelay('RotationAngle',0,AniDuiation,0.2,TAnimationType.atInOut,TInterpolationType.itBack);
+end;
+
+procedure TfrmMain.TransitionAniOnProgress(Sender: TObject);
+begin
+  Filter.ValuesAsFloat['Progress'] := Button1.Width;
+  imgMain.Bitmap := Filter.ValuesAsBitmap['output'];
 end;
 
 end.
