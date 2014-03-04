@@ -16,10 +16,9 @@ interface
       function GetBingWidth:NativeInt;     //the adjested screen width supported by bing.com
       function GetBingHeight:NativeInt;    //the adjested screen height supported by bing.com
   end;
+
 implementation
 
-var
-  LocalInfo:TBingLocal;
 
 { TUiWindows }
 
@@ -99,8 +98,4 @@ begin
 end;
 
 
-initialization
-  LocalInfo:=TBingLocal.Create;
-finalization
-  LocalInfo.Free;
 end.

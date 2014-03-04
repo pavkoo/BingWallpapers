@@ -6,8 +6,6 @@ uses
   uConst, Generics.Collections, System.SysUtils,System.Classes,XSuperObject;
 
 type
-  TBingResponseFormat = (brfXml, brfJson);
-  TBingResquestMkt = (mktUS, mktCN, mktJP, mktAU, mktUK, mktDE, mktNZ, mktCA);
 
   TBingUrlParam = class
     bingFormat: TBingResponseFormat;
@@ -163,43 +161,45 @@ end;
 
 { TBingResultParse }
 
-
+//严重关联
 procedure TBingResultParse.ParseResult(var resultList:TList<TBingImageInfo>);
 var
   StringStream:TStringStream;
   bingInfo:TBingImageInfo;
   bingInfoDesc:TBingImageDesc;
-  iso,desc,item,descItem:ISuperObject;
-  itemcast,descCast:ICast;
+  i,j,ImagesCount,DescCount:Integer;
+  iso,desc,item,descItem,X:ISuperObject;
+  temp:string;
 begin
   Assert(Self<>nil,'传入需要转换的Stream');
-  if resultList=nil then resultList.Create;
+  if resultList=nil then resultList:=TList<TBingImageInfo>.Create;
   try
-    StringStream := TStringStream.Create;
+    StringStream := TStringStream.Create('',65001);
     StringStream.LoadFromStream(Self);
-    iso := SO(StringStream.DataString);
-
-    for itemcast in iso do
+    X := TSuperObject.Create(StringStream.DataString);
+    ImagesCount:=X.A['images'].Length;
+    for i := 0 to ImagesCount - 1 do
     begin
-      item := itemcast.AsObject;
+      item := x.A['images'].O[i];
       bingInfo := TBingImageInfo.Create;
       bingInfo.StartDate := StrToDateDef(item['startdate'].AsString,Now);
       bingInfo.EndDate := StrToDateDef(item['enddate'].AsString,Now);
       bingInfo.UrlBase :=  item['urlBase'].AsString;
       bingInfo.CopyRight := item['copyright'].AsString;
       bingInfo.CopyRightLink := item['copyrightlink'].AsString;
-      bingInfo.ImageTitle := item['messages.message.msgtext'].AsString;
-      bingInfo.ImageTitle := item['messages.message.msglink'].AsString;
-      desc := SO( item['hotspots'].AsString);
-      for descCast in desc do
+
+      DescCount := item['hs'].AsArray.Length;
+      for j := 0 to DescCount - 1 do
       begin
-        descItem := descCast.AsObject;
+        descItem := item.A['hs'].O[j];
         bingInfoDesc := TBingImageDesc.Create;
         bingInfoDesc.Desc := descItem['desc'].AsString;
         bingInfoDesc.DescLink := descItem['link'].AsString;
         bingInfoDesc.DescQuery := descItem['query'].AsString;
         bingInfo.DescLists.Add(bingInfoDesc);
       end;
+      bingInfo.ImageTitle := item.A['msg'].O[0]['text'].AsString;
+      bingInfo.ImageLink :=  item.A['msg'].O[0]['link'].AsString;
       resultList.Add(bingInfo);
     end;
   finally

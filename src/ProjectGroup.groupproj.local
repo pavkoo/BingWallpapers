@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2014/02/10 15:50:21.000.812,H:\Users\PAVKOO\Documents\RAD Studio\Projects\ProjectGroup1.groupproj=D:\Code\鹏程\bing wallpapers\src\ProjectGroup.groupproj</Transaction>
+    <Transaction>2014/02/10 15:50:21.000.812,D:\Code\鹏程\bing wallpapers\src\ProjectGroup.groupproj=H:\Users\PAVKOO\Documents\RAD Studio\Projects\ProjectGroup1.groupproj</Transaction>
   </Transactions>
 	<Default.Personality>
-		<Projects ActiveProject="C:\Users\pavko_000\Documents\GitHub\BingWallpapers\src\ProjectCode\proBingWallpapers.dproj"/>
+		<Projects ActiveProject="D:\Code\鹏程\BingWallpapers\src\ProjectCode\proBingWallpapers.dproj"/>
 	</Default.Personality>
 </BorlandProject>

@@ -20,7 +20,6 @@ interface
     BingResponseXML='xml';
     BingResponseJSON='js';
 
-
     //array must sorted By width ,this array is gen by project1.exe
     BingSupportedResolution:array [1..25] of array [1..2] of Integer=(
      (240,240),
@@ -50,7 +49,9 @@ interface
      (1920,1200)
      );
 
-
+  type
+    TBingResponseFormat = (brfXml, brfJson);
+    TBingResquestMkt = (mktCN,mktUS,mktJP, mktAU, mktUK, mktDE, mktNZ, mktCA);
 
 
 implementation

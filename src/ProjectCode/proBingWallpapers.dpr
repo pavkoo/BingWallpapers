@@ -9,7 +9,8 @@ uses
   uBing in 'uBing.pas',
   uUIAdapter in 'uUIAdapter.pas',
   uWebUtils in 'uWebUtils.pas',
-  uBingConfig in 'uBingConfig.pas';
+  uBingConfig in 'uBingConfig.pas',
+  AnonThread in 'AnonThread.pas';
 
 {$R *.res}
 

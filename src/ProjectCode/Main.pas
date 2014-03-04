@@ -10,7 +10,8 @@ uses
   IdTCPConnection, IdTCPClient, IdHTTP, FMX.Platform, FMX.Layouts, FMX.ExtCtrls,
   FMX.Effects, FMX.Filter.Effects, FMX.Ani, FMX.ListView.Types, FMX.ListView,
   FMX.StdCtrls, FMX.Filter, FMX.Controls3D, FMX.Layers3D, FMX.Objects3D,
-  FMX.Viewport3D, FMX.MaterialSources,FMX.Types3D,System.UIConsts;
+  FMX.Viewport3D, FMX.MaterialSources,FMX.Types3D,System.UIConsts,AnonThread,
+  ubingImgSource,uConst,XsuperJSon,XSuperObject;
 
 type
   // 启动    //等待     //主    //bing详细 //选择国家 //关于
@@ -22,9 +23,9 @@ type
     ActionListMain: TActionList;
     ActionBack: TAction;
     ActionForawrd: TAction;
-    txt1Title: TText;
+    txtTitle: TText;
     lyImageInfo: TLayout;
-    txt: TText;
+    txtCopyright: TText;
     lyDetail: TLayout;
     shdwfct1: TShadowEffect;
     bottomShadow: TRectangle;
@@ -111,6 +112,7 @@ type
     procedure ActionCountryDownExecute(Sender: TObject);
     procedure imgEarthClick(Sender: TObject);
     procedure imgBackgroundClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
     FCurrentUIStyle: TUIStyle;
@@ -118,11 +120,14 @@ type
     Filter: TFilter;
     FMouseDownPoint: TPointf;
     TransitionAni: TFloatAnimation;
+    FThread: TAnonymousThread<Boolean>;
+    FBingImageSource:TBingSource;
     procedure SetCurrentUIStyle(const Value: TUIStyle);
     procedure GoToCurrentUI(const LastUI, CurrentUI: TUIStyle);
     procedure ShowTitleBar;
     procedure HideTitleBar;
     procedure TransitionAniOnProgress(Sender: TObject);
+    procedure DisplayBingInfo;
   public
     { Public declarations }
     property CurrentUIStyle: TUIStyle read FCurrentUIStyle
@@ -180,23 +185,53 @@ begin
   CurrentUIStyle := TUIMain;
 end;
 
+procedure TfrmMain.DisplayBingInfo;
+begin
+  imgSource.Bitmap.Assign(imgMain.Bitmap);
+  imgTarget.Bitmap.Assign(FBingImageSource.CurrentBitMap);
+  txtTitle.Text := FBingImageSource.CurrentBingImageInfo.ImageTitle;
+  txtCopyright.Text := FBingImageSource.CurrentBingImageInfo.CopyRight;
+
+  Desc1.Text := FBingImageSource.CurrentBingImageInfo.DescLists[0].Desc;
+  Desc2.Text := FBingImageSource.CurrentBingImageInfo.DescLists[1].Desc;
+  Desc3.Text := FBingImageSource.CurrentBingImageInfo.DescLists[2].Desc;
+  Desc4.Text := FBingImageSource.CurrentBingImageInfo.DescLists[3].Desc;
+
+  Query1.Text :=FBingImageSource.CurrentBingImageInfo.DescLists[0].DescQuery;
+  Query2.Text :=FBingImageSource.CurrentBingImageInfo.DescLists[1].DescQuery;
+  Query3.Text :=FBingImageSource.CurrentBingImageInfo.DescLists[2].DescQuery;
+  Query4.Text :=FBingImageSource.CurrentBingImageInfo.DescLists[3].DescQuery;
+end;
+
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   FCurrentUIStyle := TUIFirst;
   ISmouseDown := False;
   Filter := TFilterManager.FilterByName('FadeTransition');
-  imgTarget.Bitmap.LoadFromFile('BingWallpaper.jpg');
-  imgSource.Bitmap.LoadFromFile('test.jpg');
-  imgMain.Bitmap.Assign(imgSource.Bitmap);
-  Filter.ValuesAsBitmap['Input'] := imgSource.Bitmap;
-  Filter.ValuesAsBitmap['Target'] := imgTarget.Bitmap;
-  Filter.ValuesAsFloat['Progress'] := 0;
+end;
+
+procedure TfrmMain.FormDestroy(Sender: TObject);
+begin
+  Filter.Free;
+  FBingImageSource.Free;
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   application.ProcessMessages;
-  CurrentUIStyle := TUIMain;
+  FBingImageSource:=TBingSource.Create;
+  FThread := TAnonymousThread<Boolean>.Create(
+    //线程函数
+    function :Boolean
+    begin
+      FBingImageSource.DownLoadBingInfo;
+    end,
+    procedure(AResult:Boolean)
+    begin
+      CurrentUIStyle := TUIMain;
+    end,
+    nil
+  );
 end;
 
 procedure TfrmMain.GoToCurrentUI(const LastUI, CurrentUI: TUIStyle);
@@ -208,6 +243,14 @@ begin
         bottomShadow.Opacity := 0.7;
         if LastUI = TUIFirst then
         begin
+          DisplayBingInfo;
+
+          imgMain.WrapMode := TImageWrapMode.iwCenter;
+          imgMain.Bitmap := ImgTarget.Bitmap;
+
+          lyImageInfo.Position.Y := Self.Height;
+          lyImageInfo.Visible := True;
+
           ShowTitleBar;
         end
         else if LastUI = TUIDetail then

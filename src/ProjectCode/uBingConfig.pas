@@ -20,8 +20,7 @@ interface
      property LocalImages:TStringList read  GetLocalImages;
    end;
 
-   var
-     Config : TBingConfiger;
+   
 implementation
 
 const
@@ -73,8 +72,5 @@ begin
 end;
 
 
-initialization
-  Config:=TBingConfiger.Create;
-finalization
-  Config.Free;
+
 end.
