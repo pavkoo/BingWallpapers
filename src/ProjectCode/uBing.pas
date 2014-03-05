@@ -40,6 +40,7 @@ type
   public
     StartDate: TDate;
     EndDate: TDate;
+    Url:string;
     UrlBase: String;
     CopyRight: String;
     CopyRightLink: String;
@@ -138,6 +139,7 @@ constructor TBingImageInfo.Create;
 begin
   StartDate := 0;
   EndDate := 0;
+  Url:='';
   UrlBase := '';
   CopyRight := '';
   CopyRightLink := '';
@@ -184,6 +186,7 @@ begin
       bingInfo := TBingImageInfo.Create;
       bingInfo.StartDate := StrToDateDef(item['startdate'].AsString,Now);
       bingInfo.EndDate := StrToDateDef(item['enddate'].AsString,Now);
+      bingInfo.Url := item['url'].AsString;
       bingInfo.UrlBase :=  item['urlBase'].AsString;
       bingInfo.CopyRight := item['copyright'].AsString;
       bingInfo.CopyRightLink := item['copyrightlink'].AsString;

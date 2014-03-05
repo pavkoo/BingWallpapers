@@ -7,6 +7,7 @@ interface
    TBingConfiger=class
    private
      files:TIniFile;
+     FLocalImages:TStringList;
      function GetControyCode:Integer;
      procedure SetControyCode(const Value:Integer);
      function GetImageFilePath:String;
@@ -14,7 +15,8 @@ interface
    public
      constructor Create;
      destructor Destroy;override;
-     procedure AddLocalImages(const Value: String);
+     procedure AddLocalImages(const Ident,Value: String);
+     function GetLocalImage(const Ident:String):String;
      property ControyCode:Integer  read GetControyCode write SetControyCode;
      property ImageFilePath:String  read GetImageFilePath;
      property LocalImages:TStringList read  GetLocalImages;
@@ -37,12 +39,14 @@ var
 begin
   filePath := TPath.Combine(TPath.GetDocumentsPath,BINGCONFIGFILE);
   files:= TIniFile.Create(filePath);
+  FLocalImages := TStringLIst.Create;
 end;
 
 destructor TBingConfiger.Destroy;
 begin
   files.UpdateFile;
   files.Free;
+  FLocalImages.Free;
   inherited;
 end;
 
@@ -53,22 +57,32 @@ end;
 
 function TBingConfiger.GetImageFilePath: String;
 begin
-  Result := files.ReadString(INIFILESECTION,INIFILEIMAGEDIR,'');
+  Result := files.ReadString(INIFILESECTION,INIFILEIMAGEDIR,TPath.Combine(TPath.GetDocumentsPath,BINGLOCALIMAGEDIR));
+  if not TDirectory.Exists(Result) then TDirectory.CreateDirectory(Result);
+end;
+
+function TBingConfiger.GetLocalImage(const Ident: String): String;
+begin
+  Result:=files.ReadString(INIFILEDATASECTION,Ident,'');
 end;
 
 function TBingConfiger.GetLocalImages: TStringList;
 begin
-  files.ReadSection(INIFILEDATASECTION,Result);
+  FLocalImages.Clear;
+  files.ReadSection(INIFILEDATASECTION,FLocalImages);
+  Result:=FLocalImages;
 end;
 
 procedure TBingConfiger.SetControyCode(const Value: Integer);
 begin
   files.WriteInteger(INIFILESECTION,INIFILECOUNTORY,Value);
+  files.UpdateFile;
 end;
 
-procedure TBingConfiger.AddLocalImages(const Value: String);
+procedure TBingConfiger.AddLocalImages(const Ident,Value: String);
 begin
-  files.WriteString(INIFILEDATASECTION,INIFILEIMAGES,Value);
+  files.WriteString(INIFILEDATASECTION,Ident,Value);
+  files.UpdateFile;
 end;
 
 

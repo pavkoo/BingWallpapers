@@ -37,7 +37,10 @@
     <Transaction>2014/03/04 09:23:24.000.161,=D:\Code\鹏程\BingWallpapers\src\ProjectCode\Unit2.pas</Transaction>
     <Transaction>2014/03/04 09:23:41.000.778,D:\Code\鹏程\BingWallpapers\src\ProjectCode\ubackgroundThread.pas=D:\Code\鹏程\BingWallpapers\src\ProjectCode\Unit2.pas</Transaction>
     <Transaction>2014/03/04 09:44:59.000.514,D:\Code\鹏程\BingWallpapers\src\ProjectCode\ubackgroundThread.pas=</Transaction>
-    <Transaction>2014/03/04 09:45:50.244,=D:\Code\鹏程\BingWallpapers\src\ProjectCode\AnonThread.pas</Transaction>
+    <Transaction>2014/03/04 09:45:50.000.244,=D:\Code\鹏程\BingWallpapers\src\ProjectCode\AnonThread.pas</Transaction>
+    <Transaction>2014/03/04 14:22:15.000.048,D:\Code\鹏程\BingWallpapers\src\ProjectCode\uWebUtils.pas=D:\Code\鹏程\BingWallpapers\src\ProjectCode\ubingImgSource.pas</Transaction>
+    <Transaction>2014/03/05 16:09:17.975,=D:\Code\鹏程\BingWallpapers\src\ProjectCode\Unit2.pas</Transaction>
+    <Transaction>2014/03/05 16:09:23.521,D:\Code\鹏程\BingWallpapers\src\ProjectCode\uWallpaper.pas=D:\Code\鹏程\BingWallpapers\src\ProjectCode\Unit2.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Main.pas"/>
@@ -45,10 +48,12 @@
     <File Path="uBing.pas"/>
     <File Path="uConst.pas"/>
     <File Path="uUIAdapter.pas"/>
-    <File Path="uWebUtils.pas"/>
+    <File Path="ubingImgSource.pas"/>
     <File Path="XSuperJSON.pas"/>
     <File Path="XSuperObject.pas"/>
     <File Path="uBingConfig.pas"/>
     <File Path="AnonThread.pas"/>
+    <File Path="uWallpaper.pas"/>
   </ProjectSortOrder>
+	<MobileDevice>emulator-5554</MobileDevice>
 </BorlandProject>

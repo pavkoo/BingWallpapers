@@ -15,7 +15,7 @@ Coordinates=10,78,97,36
 Coordinates=83,10,79,36
 
 []
-Coordinates=1006,111,91,36
+Coordinates=831,56,134,36
 
 [lyImageInfo]
 Coordinates=375,78,81,36
@@ -115,9 +115,6 @@ Coordinates=635,331,93,36
 
 [ShadowEffect8]
 Coordinates=526,343,101,36
-
-[FadeTransitionEffect]
-Coordinates=831,56,134,36
 
 [lyDetail]
 Coordinates=466,343,57,36

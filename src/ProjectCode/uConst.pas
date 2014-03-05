@@ -4,6 +4,7 @@ interface
 
   const
     BINGCONFIGFILE = 'bingConfig.ini';
+    BINGLOCALIMAGEDIR = 'bingImages';
 
     BINGIMGSOURCE = 'http://www.bing.com/HPImageArchive.aspx?format=%s&idx=%d&n=%d&mkt=%s';
     BINGIMGURL = 'http://www.bing.com/%s_%dx%d.jpg';

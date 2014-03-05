@@ -7,10 +7,11 @@ uses
   XSuperObject in 'XSuperObject.pas',
   uConst in 'uConst.pas',
   uBing in 'uBing.pas',
-  uUIAdapter in 'uUIAdapter.pas',
-  uWebUtils in 'uWebUtils.pas',
+  ubingImgSource in 'ubingImgSource.pas',
   uBingConfig in 'uBingConfig.pas',
-  AnonThread in 'AnonThread.pas';
+  AnonThread in 'AnonThread.pas',
+  uUIAdapter in 'uUIAdapter.pas',
+  uWallpaper in 'uWallpaper.pas';
 
 {$R *.res}
 
