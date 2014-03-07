@@ -125,9 +125,13 @@ begin
   Result := GetStreamFromWeb(FParams.ToString, Stream);
   if not Result then
     Exit;
-  Result := Stream.ParseResult(FBingImageInfo);
-  if not Result then
+  try
+    Result := Stream.ParseResult(FBingImageInfo);
+    if not Result then Exit;
+  except on E: Exception do
     Exit;
+  end;
+
   FCurrentBingImageInfo := FBingImageInfo.Items[0];
   if Stream <> nil then
     Freeandnil(Stream);

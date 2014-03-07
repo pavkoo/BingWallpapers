@@ -160,7 +160,7 @@ var
 
 const
   ABSPOSITIONYIMAGEINFO = 90;
-  AniDuiation = 0.5;
+  AniDuiation = 0.3;
   ERRORMESSAGESHOWTIME = 3;
 
 implementation
