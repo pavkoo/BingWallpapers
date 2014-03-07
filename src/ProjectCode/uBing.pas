@@ -3,7 +3,8 @@ unit uBing;
 interface
 
 uses
-  uConst, Generics.Collections, System.SysUtils,System.Classes,XSuperObject;
+  uConst, Generics.Collections, System.SysUtils, System.Classes, XSuperObject,
+  FMX.Graphics;
 
 type
 
@@ -40,13 +41,14 @@ type
   public
     StartDate: TDate;
     EndDate: TDate;
-    Url:string;
+    Url: string;
     UrlBase: String;
     CopyRight: String;
     CopyRightLink: String;
     ImageTitle: String;
     ImageLink: String;
     DescLists: TList<TBingImageDesc>;
+    bitMap: TBitMap;
     Constructor Create;
   protected
     destructor Destroy; override;
@@ -55,7 +57,7 @@ type
   end;
 
   TBingResultParse = class helper for TStream
-    procedure ParseResult(var resultList:TList<TBingImageInfo>);
+    function ParseResult(var resultList: TList<TBingImageInfo>): Boolean;
   end;
 
 implementation
@@ -139,13 +141,14 @@ constructor TBingImageInfo.Create;
 begin
   StartDate := 0;
   EndDate := 0;
-  Url:='';
+  Url := '';
   UrlBase := '';
   CopyRight := '';
   CopyRightLink := '';
   ImageTitle := '';
   ImageLink := '';
   DescLists := TList<TBingImageDesc>.Create;
+  bitMap := TBitMap.Create;
 end;
 
 destructor TBingImageInfo.Destroy;
@@ -157,37 +160,46 @@ begin
     if DescLists.Items[i] <> nil then
       DescLists.Delete(i);
   end;
+  bitMap.Free;
   DescLists.Free;
   inherited;
 end;
 
 { TBingResultParse }
 
-//严重关联
-procedure TBingResultParse.ParseResult(var resultList:TList<TBingImageInfo>);
+// 严重关联bing返回的json格式
+function TBingResultParse.ParseResult(var resultList
+  : TList<TBingImageInfo>): Boolean;
 var
-  StringStream:TStringStream;
-  bingInfo:TBingImageInfo;
-  bingInfoDesc:TBingImageDesc;
-  i,j,ImagesCount,DescCount:Integer;
-  iso,desc,item,descItem,X:ISuperObject;
-  temp:string;
+  StringStream: TStringStream;
+  bingInfo: TBingImageInfo;
+  bingInfoDesc: TBingImageDesc;
+  i, j, ImagesCount, DescCount: Integer;
+  iso, Desc, item, descItem, X: ISuperObject;
+  temp: string;
 begin
-  Assert(Self<>nil,'传入需要转换的Stream');
-  if resultList=nil then resultList:=TList<TBingImageInfo>.Create;
+  Result := True;
+  if Self = nil then
+  begin
+    Result := False;
+    ErrorString := '传入需要转换的Stream';
+    Exit;
+  end;
+  if resultList = nil then
+    resultList := TList<TBingImageInfo>.Create;
+  StringStream := TStringStream.Create('', 65001);
   try
-    StringStream := TStringStream.Create('',65001);
     StringStream.LoadFromStream(Self);
     X := TSuperObject.Create(StringStream.DataString);
-    ImagesCount:=X.A['images'].Length;
+    ImagesCount := X.A['images'].Length;
     for i := 0 to ImagesCount - 1 do
     begin
-      item := x.A['images'].O[i];
+      item := X.A['images'].O[i];
       bingInfo := TBingImageInfo.Create;
-      bingInfo.StartDate := StrToDateDef(item['startdate'].AsString,Now);
-      bingInfo.EndDate := StrToDateDef(item['enddate'].AsString,Now);
+      bingInfo.StartDate := StrToDateDef(item['startdate'].AsString, Now);
+      bingInfo.EndDate := StrToDateDef(item['enddate'].AsString, Now);
       bingInfo.Url := item['url'].AsString;
-      bingInfo.UrlBase :=  item['urlBase'].AsString;
+      bingInfo.UrlBase := item['urlBase'].AsString;
       bingInfo.CopyRight := item['copyright'].AsString;
       bingInfo.CopyRightLink := item['copyrightlink'].AsString;
 
@@ -202,12 +214,17 @@ begin
         bingInfo.DescLists.Add(bingInfoDesc);
       end;
       bingInfo.ImageTitle := item.A['msg'].O[0]['text'].AsString;
-      bingInfo.ImageLink :=  item.A['msg'].O[0]['link'].AsString;
+      bingInfo.ImageLink := item.A['msg'].O[0]['link'].AsString;
       resultList.Add(bingInfo);
     end;
-  finally
-    StringStream.Free;
+  except
+    on E: Exception do
+    begin
+      Result := False;
+      ErrorString := 'Json解析错误';
+    end;
   end;
+  StringStream.Free;
 end;
 
 end.

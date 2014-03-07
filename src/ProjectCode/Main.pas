@@ -14,7 +14,7 @@ uses
   ubingImgSource, uConst, XsuperJSon, XSuperObject, System.IOUtils, uWallpaper;
 
 type
-  // 启动    //等待     //主    //bing详细 //选择国家 //关于
+               // 启动    //等待     //主    //bing详细 //选择国家 //关于
   TUIStyle = (TUIFirst, TUIWaiting, TUIMain, TUIDetail, TUICountry, TUIAbout);
 
   TfrmMain = class(TForm)
@@ -67,7 +67,6 @@ type
     ShadowEffect9: TShadowEffect;
     LayoutSetting: TLayout;
     imgEarth: TImage;
-    imgBackground: TImage;
     LayoutCountry: TLayout;
     Camera1: TCamera;
     ShadowEffect10: TShadowEffect;
@@ -94,6 +93,20 @@ type
     ShadowEffect11: TShadowEffect;
     txtChina: TText;
     Rectangle7: TRectangle;
+    Rectsettingbk: TRectangle;
+    imgBackground: TImage;
+    txtCountry: TText;
+    txtPin: TText;
+    rectConutry: TRectangle;
+    rectPin: TRectangle;
+    txtError: TText;
+    Image1: TImage;
+    FloatAnimation2: TFloatAnimation;
+    Layout1: TLayout;
+    Rectangle5: TRectangle;
+    Rectangle10: TRectangle;
+    actionLeft: TImage;
+    actionRight: TImage;
     procedure FormCreate(Sender: TObject);
     procedure lyImageInfoMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Single);
@@ -116,6 +129,9 @@ type
     procedure Desc1Click(Sender: TObject);
     procedure imgMainMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Single);
+    procedure Button2Click(Sender: TObject);
+    procedure actionLeftClick(Sender: TObject);
+    procedure actionRightClick(Sender: TObject);
   private
     { Private declarations }
     FCurrentUIStyle: TUIStyle;
@@ -131,6 +147,8 @@ type
     procedure HideTitleBar;
     procedure TransitionAniOnProgress(Sender: TObject);
     procedure DisplayBingInfo;
+    procedure RippleChangeImg;
+    procedure ShowMessage(const ErrorMsg: String);
   public
     { Public declarations }
     property CurrentUIStyle: TUIStyle read FCurrentUIStyle
@@ -141,12 +159,15 @@ var
   frmMain: TfrmMain;
 
 const
-  ABSPOSITIONYIMAGEINFO = 100;
-  AniDuiation = 0.4;
+  ABSPOSITIONYIMAGEINFO = 90;
+  AniDuiation = 0.5;
+  ERRORMESSAGESHOWTIME = 3;
 
 implementation
 
 {$R *.fmx}
+
+
 { TfrmMain }
 
 procedure TfrmMain.ActionhideCountryExecute(Sender: TObject);
@@ -161,11 +182,13 @@ begin
     // 线程函数
     function: Boolean
     begin
-      FBingImageSource.DownLoadPreviousBingInfo;
+      Result := FBingImageSource.DownLoadPreviousBingInfo;
     end,
     procedure(AResult: Boolean)
     begin
-      CurrentUIStyle := TUIMain
+      CurrentUIStyle := TUIMain;
+      if not AResult then
+        ShowMessage(ErrorString);
     end, nil);
 end;
 
@@ -187,11 +210,13 @@ begin
   // 线程函数
     function: Boolean
     begin
-      FBingImageSource.DownLoadNextBingInfo;
+      Result := FBingImageSource.DownLoadNextBingInfo;
     end,
     procedure(AResult: Boolean)
     begin
-      CurrentUIStyle := TUIMain
+      CurrentUIStyle := TUIMain;
+      if not AResult then
+        ShowMessage(ErrorString);
     end, nil);
 end;
 
@@ -206,25 +231,54 @@ begin
   CurrentUIStyle := TUIMain;
 end;
 
+procedure TfrmMain.Button2Click(Sender: TObject);
+begin
+  ShowMessage('asdfasdfasdf');
+end;
+
 procedure TfrmMain.Desc1Click(Sender: TObject);
 begin
   if Sender is TText then
-    if FBingImageSource.CurrentBingImageInfo.DescLists.Count >TText(Sender).Tag then
-      TWallpaper.urlOpen(FBingImageSource.CurrentBingImageInfo.DescLists[TText(Sender).Tag].DescLink);
+    if FBingImageSource.CurrentBingImageInfo.DescLists.Count > TText(Sender).Tag
+    then
+      TWallpaper.urlOpen(FBingImageSource.CurrentBingImageInfo.DescLists
+        [TText(Sender).Tag].DescLink);
 end;
 
 procedure TfrmMain.DisplayBingInfo;
 begin
   imgSource.Bitmap.Assign(imgMain.Bitmap);
-  imgTarget.Bitmap.Assign(FBingImageSource.CurrentBitMap);
+  imgTarget.Bitmap.Assign(FBingImageSource.CurrentBingImageInfo.Bitmap);
   Filter.ValuesAsBitmap['Input'] := imgSource.Bitmap;
   Filter.ValuesAsBitmap['Target'] := imgTarget.Bitmap;
   txtTitle.Text := FBingImageSource.CurrentBingImageInfo.ImageTitle;
   txtTitle.UpdateEffects;
   txtCopyright.Text := FBingImageSource.CurrentBingImageInfo.CopyRight;
   txtCopyright.UpdateEffects;
+  //Shit Code Comming ^.^
   if FBingImageSource.CurrentBingImageInfo.DescLists.Count = 0 then
+  begin
+    Desc1.Text := '';
+    Desc1.UpdateEffects;
+    Query1.Text := '';
+    Query1.UpdateEffects;
+
+    Desc2.Text := '';
+    Desc2.UpdateEffects;
+    Query2.Text :='';
+    Query2.UpdateEffects;
+
+    Desc3.Text := '';
+    Desc3.UpdateEffects;
+    Query3.Text := '';
+    Query3.UpdateEffects;
+
+    Desc4.Text := '';
+    Desc4.UpdateEffects;
+    Query4.Text := '';
+    Query4.UpdateEffects;
     exit;
+  end;
 
   Desc1.Text := FBingImageSource.CurrentBingImageInfo.DescLists[0].Desc;
   Desc1.UpdateEffects;
@@ -268,11 +322,14 @@ begin
   // 线程函数
     function: Boolean
     begin
-      FBingImageSource.DownLoadBingInfo;
+      Result := FBingImageSource.DownLoadBingInfo;
     end,
     procedure(AResult: Boolean)
     begin
-      CurrentUIStyle := TUIMain;
+      if AResult then
+        CurrentUIStyle := TUIMain
+      else
+        ShowMessage(ErrorString);
     end, nil);
 end;
 
@@ -305,31 +362,14 @@ begin
         else if LastUI = TUIWaiting then
         begin
           DisplayBingInfo;
-          RippleFloatAnimation.Stop;
-          RippleEffect.Phase := 0;
-          FloatAnimationAmplitude.Delay := 0;
-          FloatAnimationAmplitude.Duration := AniDuiation;
-          FloatAnimationAmplitude.StopValue := 0;
-          FloatAnimationAmplitude.StartFromCurrent := True;
-          FloatAnimationAmplitude.Start;
 
-          if (TransitionAni <> nil) then
-            FreeAndNil(TransitionAni);
-          TransitionAni := TFloatAnimation.Create(Button1);
-          TransitionAni.OnProcess := TransitionAniOnProgress;
-          TransitionAni.Parent := Button1;
-          TransitionAni.StartValue := 0;
-          TransitionAni.StopValue := 100;
-          TransitionAni.PropertyName := 'Width';
-          TransitionAni.Duration := AniDuiation * 3;
-          TransitionAni.Enabled := True;
-          TransitionAni.Start;
-
+          RippleChangeImg;
           ShowTitleBar;
         end
         else if LastUI = TUICountry then
         begin
           DisplayBingInfo;
+          RippleChangeImg;
           LayoutCountry.AnimateFloat('Opacity', 0, AniDuiation);
           LayoutCountry.AnimateFloatWait('Height', 0, AniDuiation);
           // 上面那个动画，会导致lyImageInfo控件去执行relaign方法，使得lyImageInfo的位置可见
@@ -376,7 +416,7 @@ begin
       end;
     TUICountry:
       begin
-        lyImageInfo.AnimateFloatWait('Position.Y', Self.Height, AniDuiation);
+        HideTitleBar;
         lyImageInfo.Visible := False;
         LayoutCountry.AnimateFloat('Opacity', 1, AniDuiation);
         LayoutCountry.AnimateFloatWait('Height',
@@ -388,9 +428,18 @@ end;
 
 procedure TfrmMain.HideTitleBar;
 begin
-  LayoutSetting.AnimateFloat('RotationAngle', -90, AniDuiation,
-    TAnimationType.atIn, TInterpolationType.itBack);
-  lyImageInfo.AnimateFloatDelay('Position.Y', Self.Height, AniDuiation, 0.2);
+  LayoutSetting.AnimateFloatWait('Height', 0, 0.1);
+  lyImageInfo.AnimateFloatWait('Position.Y', Self.Height, AniDuiation);
+end;
+
+procedure TfrmMain.actionLeftClick(Sender: TObject);
+begin
+  ActionBackExecute(ActionBack);
+end;
+
+procedure TfrmMain.actionRightClick(Sender: TObject);
+begin
+  ActionForawrdExecute(ActionForawrd);
 end;
 
 procedure TfrmMain.imgBackgroundClick(Sender: TObject);
@@ -398,7 +447,7 @@ begin
   RippleEffect.Enabled := False;
   InnerGlowEffectMain.Enabled := True;
   InnerGlowEffectMain.AnimateFloatWait('Softness', 9, AniDuiation * 2);
-  TWallPaper.SetWallpaper(FBingImageSource.fileimagePath);
+  TWallpaper.SetWallpaper(FBingImageSource.fileimagePath);
   InnerGlowEffectMain.AnimateFloatWait('Softness', 0, AniDuiation * 2);
   InnerGlowEffectMain.Enabled := False;
 end;
@@ -409,12 +458,12 @@ begin
 end;
 
 procedure TfrmMain.imgMainMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Single);
+Shift: TShiftState; X, Y: Single);
 begin
-  if (CurrentUIStyle<>TUIMain)  then
+  if (CurrentUIStyle <> TUIMain) then
   begin
-    if imgMain.PointInObject(X,Y) then
-      CurrentUIStyle:=TUIMain;
+    if imgMain.PointInObject(X, Y) then
+      CurrentUIStyle := TUIMain;
   end;
 end;
 
@@ -426,6 +475,7 @@ begin
     ISmouseDown := True;
     FMouseDownPoint.X := X;
     FMouseDownPoint.Y := Y;
+    Self.SetCaptured(TFmxObject(Sender).AsIControl);
   end;
 end;
 
@@ -437,6 +487,7 @@ begin
     lyImageInfo.Height := lyImageInfo.Height + (FMouseDownPoint.Y - Y);
     GaussianBlurEffect.BlurAmount := 0.01 +
       (Self.Height - lyImageInfo.Position.Y) / Self.Height;
+    Self.ReleaseCapture;
   end;
 end;
 
@@ -444,6 +495,29 @@ procedure TfrmMain.lyImageInfoMouseUp(Sender: TObject; Button: TMouseButton;
 Shift: TShiftState; X, Y: Single);
 begin
   ISmouseDown := False;
+end;
+
+procedure TfrmMain.RippleChangeImg;
+begin
+  RippleFloatAnimation.Stop;
+  RippleEffect.Phase := 0;
+  FloatAnimationAmplitude.Delay := 0;
+  FloatAnimationAmplitude.Duration := AniDuiation;
+  FloatAnimationAmplitude.StopValue := 0;
+  FloatAnimationAmplitude.StartFromCurrent := True;
+  FloatAnimationAmplitude.Start;
+
+  if (TransitionAni <> nil) then
+    FreeAndNil(TransitionAni);
+  TransitionAni := TFloatAnimation.Create(Button1);
+  TransitionAni.OnProcess := TransitionAniOnProgress;
+  TransitionAni.Parent := Button1;
+  TransitionAni.StartValue := 0;
+  TransitionAni.StopValue := 100;
+  TransitionAni.PropertyName := 'Width';
+  TransitionAni.Duration := AniDuiation * 3;
+  TransitionAni.Enabled := True;
+  TransitionAni.Start;
 end;
 
 procedure TfrmMain.SetCurrentUIStyle(const Value: TUIStyle);
@@ -455,13 +529,36 @@ begin
   end;
 end;
 
+
+
+procedure TfrmMain.ShowMessage(const ErrorMsg: String);
+var
+  OrgColor: TAlphaColor;
+begin
+  OrgColor := Rectsettingbk.Fill.Color;
+  rectPin.AnimateFloat('Opacity', 0, AniDuiation);
+  rectConutry.AnimateFloatWait('Opacity', 0, AniDuiation);
+  Rectsettingbk.AnimateColor('Fill.Color', TAlphaColorRec.Red, AniDuiation);
+  txtError.Text := ErrorMsg;
+  txtError.AnimateFloat('Width', Rectsettingbk.Width);
+
+  txtError.AnimateFloatWait('Opacity', 0.9, ERRORMESSAGESHOWTIME,
+    TAnimationType.atInOut, TInterpolationType.itCircular);
+
+  txtError.AnimateFloatWait('Width', 0, AniDuiation);
+  txtError.Text := '';
+  Rectsettingbk.AnimateColor('Fill.Color', OrgColor, AniDuiation);
+  rectConutry.AnimateFloatWait('Opacity', 1, AniDuiation);
+  rectPin.AnimateFloatWait('Opacity', 1, AniDuiation);
+end;
+
 procedure TfrmMain.ShowTitleBar;
 begin
   lyImageInfo.Position.Y := Self.Height;
-  lyImageInfo.AnimateFloat('Position.Y', Self.Height - ABSPOSITIONYIMAGEINFO -
-    40, AniDuiation, TAnimationType.atInOut, TInterpolationType.itBack);
-  LayoutSetting.AnimateFloatDelay('RotationAngle', 0, AniDuiation, 0.2,
+  lyImageInfo.AnimateFloat('Position.Y', Self.Height - ABSPOSITIONYIMAGEINFO -40, AniDuiation, TAnimationType.atInOut, TInterpolationType.itBack);
+  LayoutSetting.AnimateFloatDelay('Height', 20, AniDuiation, 0.2,
     TAnimationType.atInOut, TInterpolationType.itBack);
+  Rectsettingbk.AnimateColor('Fill.Color', Random(High(TColor)), AniDuiation);
 end;
 
 procedure TfrmMain.TransitionAniOnProgress(Sender: TObject);
@@ -477,13 +574,14 @@ begin
   // 线程函数
     function: Boolean
     begin
-      FBingImageSource.DownLoadBingInfo;
+      Result := FBingImageSource.DownLoadBingInfo;
     end,
     procedure(AResult: Boolean)
     begin
-      CurrentUIStyle := TUIMain
-    end,
-    nil);
+      CurrentUIStyle := TUIMain;
+      if not AResult then
+        ShowMessage(ErrorString);
+    end, nil);
 end;
 
 end.

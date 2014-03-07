@@ -15,7 +15,7 @@ Coordinates=10,78,97,36
 Coordinates=83,10,79,36
 
 []
-Coordinates=831,56,134,36
+Coordinates=76,1,104,58
 
 [lyImageInfo]
 Coordinates=375,78,81,36
@@ -85,9 +85,6 @@ Coordinates=292,269,101,36
 
 [imgTarget]
 Coordinates=57,77,72,58
-
-[imgBackground]
-Coordinates=76,1,104,58
 
 [Rectangle1]
 Coordinates=203,269,80,36

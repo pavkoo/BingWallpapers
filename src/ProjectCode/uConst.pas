@@ -54,7 +54,8 @@ interface
     TBingResponseFormat = (brfXml, brfJson);
     TBingResquestMkt = (mktCN,mktUS,mktJP, mktAU, mktUK, mktDE, mktNZ, mktCA);
 
-
+  var
+    ErrorString:String;
 implementation
 
 end.

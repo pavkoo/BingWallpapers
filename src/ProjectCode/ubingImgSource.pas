@@ -5,7 +5,7 @@ interface
 uses
   IdHTTP, Classes, System.SysUtils, uBingConfig, uUIAdapter, FMX.Graphics,
   uBing,
-  Generics.Collections, uConst,System.IOUtils;
+  Generics.Collections, uConst, System.IOUtils;
 
 type
 
@@ -19,21 +19,21 @@ type
     FLocalInfo: TBingLocal;
     FConfig: TBingConfiger;
     FBingImageInfo: TList<TBingImageInfo>;
+    FDownLoadsBingInfo: TDictionary<string, TBingImageInfo>;
     FParams: TBingUrlParam;
-
-    procedure GetStreamFromWeb(const url: string; Stream: TStream);
+    FCurrentBingImageInfo: TBingImageInfo;
+    function GetStreamFromWeb(const url: string; Stream: TStream): Boolean;
     function GetCurrentBingImageInfo: TBingImageInfo;
-    function GetImageUrl: String;
-    function GetImageFileName:String;
+    function GetImageUrl(BingImageInfo: TBingImageInfo): String;
+    function GetImageFileName(BingImageInfo: TBingImageInfo): String;
   public
-    CurrentBitMap: TBitMap;
     fileimagePath: String;
     constructor Create;
     destructor Destroy; override;
 
-    procedure DownLoadBingInfo;
-    procedure DownLoadPreviousBingInfo;
-    procedure DownLoadNextBingInfo;
+    function DownLoadBingInfo: Boolean;
+    function DownLoadPreviousBingInfo: Boolean;
+    function DownLoadNextBingInfo: Boolean;
     procedure SetCountry(MKT: TBingResquestMkt);
     property CurrentBingImageInfo: TBingImageInfo read GetCurrentBingImageInfo;
   end;
@@ -47,11 +47,11 @@ begin
   FConfig := TBingConfiger.Create;
   FLocalInfo := TBingLocal.Create;
   FParams := TBingUrlParam.Create;
-  CurrentBitMap := TBitMap.Create;
   FParams.bingFormat := TBingResponseFormat.brfJson;
   FParams.startDateindex := 0;
   FParams.instanceCount := 1;
   FParams.MKT := TBingResquestMkt(FConfig.ControyCode);
+  FDownLoadsBingInfo := TDictionary<string, TBingImageInfo>.Create;
 end;
 
 destructor TBingSource.Destroy;
@@ -59,43 +59,40 @@ begin
   FLocalInfo.Free;
   FConfig.Free;
   FParams.Free;
-  CurrentBitMap.Free;
   inherited;
 end;
 
 function TBingSource.GetCurrentBingImageInfo: TBingImageInfo;
 begin
-  Result := nil;
-  if Assigned(FBingImageInfo) and (FBingImageInfo.Count > 0) then
-    Result := FBingImageInfo.Items[FBingImageInfo.Count - 1];
+  Result := FCurrentBingImageInfo;
 end;
 
-function TBingSource.GetImageFileName: String;
+function TBingSource.GetImageFileName(BingImageInfo: TBingImageInfo): String;
 var
-  temp:TStringList;
+  temp: TStringList;
 begin
-  //url eg： http://s.cn.bing.net/az/hprichbg/rb/MontedaRochaDam_ZH-CN8975168542_1366x768.jpg
-  //取出MontedaRochaDam_ZH-CN8975168542_1366x768.jpg
-  temp:=TStringList.Create;
+  // url eg： http://s.cn.bing.net/az/hprichbg/rb/MontedaRochaDam_ZH-CN8975168542_1366x768.jpg
+  // 取出MontedaRochaDam_ZH-CN8975168542_1366x768.jpg
+  temp := TStringList.Create;
   temp.Delimiter := '/';
-  temp.DelimitedText := CurrentBingImageInfo.Url;
+  temp.DelimitedText := BingImageInfo.url;
 
-  Result:= temp.Strings[temp.Count-1];
+  Result := temp.Strings[temp.Count - 1];
 end;
 
-function TBingSource.GetImageUrl: String;
+function TBingSource.GetImageUrl(BingImageInfo: TBingImageInfo): String;
 begin
   Result := '';
-  if CurrentBingImageInfo = nil then
-    Exit;
-  Result := Format(BINGIMGURL, [CurrentBingImageInfo.UrlBase,
-    FLocalInfo.GetBingWidth, FLocalInfo.GetBingHeight]);
+  Result := Format(BINGIMGURL, [BingImageInfo.UrlBase, FLocalInfo.GetBingWidth,
+    FLocalInfo.GetBingHeight]);
 end;
 
-procedure TBingSource.GetStreamFromWeb(const url: string; Stream: TStream);
+function TBingSource.GetStreamFromWeb(const url: string;
+  Stream: TStream): Boolean;
 var
   FHttp: TIdHTTP;
 begin
+  Result := True;
   FHttp := TIdHTTP.Create(nil);
   try
     FHttp.Request.ContentType := 'application/x-www-form-urlencoded';
@@ -103,59 +100,93 @@ begin
   except
     on E: Exception do
     begin
+      ErrorString := '访问网络错误！';
       FHttp.Free;
+      Result := False;
     end;
   end;
 end;
 
-procedure TBingSource.DownLoadBingInfo;
+// 每次只下一个图片
+function TBingSource.DownLoadBingInfo: Boolean;
 var
   Stream: TStream;
-  tempImgUrl: String;
+  tempImgUrl, ImageFileName: String;
 begin
-  Stream := TStringStream.Create;
-  GetStreamFromWeb(FParams.ToString, Stream);
-  Stream.ParseResult(FBingImageInfo);
-  if CurrentBingImageInfo = nil then
+  Result := True;
+  if FDownLoadsBingInfo.ContainsKey(FParams.ToString) then
+  begin
+    FCurrentBingImageInfo := FDownLoadsBingInfo.Items[FParams.ToString];
     Exit;
+  end;
+  if FBingImageInfo <> nil then
+    FBingImageInfo.Clear;
+  Stream := TStringStream.Create;
+  Result := GetStreamFromWeb(FParams.ToString, Stream);
+  if not Result then
+    Exit;
+  Result := Stream.ParseResult(FBingImageInfo);
+  if not Result then
+    Exit;
+  FCurrentBingImageInfo := FBingImageInfo.Items[0];
   if Stream <> nil then
     Freeandnil(Stream);
-  tempImgUrl := GetImageUrl;
+  tempImgUrl := GetImageUrl(FCurrentBingImageInfo);
+  ImageFileName := GetImageFileName(FCurrentBingImageInfo);
   // 看本地是否保存有图片
-  if (FConfig.LocalImages.IndexOf(GetImageFileName) >= 0) then
+  if (FConfig.LocalImages.IndexOf(ImageFileName) >= 0) then
   begin
-    fileimagePath :=FConfig.GetLocalImage(GetImageFileName);
-    if fileimagePath<>'' then CurrentBitMap.LoadFromFile(fileimagePath);
+    fileimagePath := FConfig.GetLocalImage(ImageFileName);
+    if fileimagePath <> '' then
+    begin
+      try
+        FCurrentBingImageInfo.bitMap.LoadFromFile(fileimagePath);
+        Exit;
+      except
+        on E: Exception do
+      end;
+    end;
+  end;
+  Stream := TMemoryStream.Create;
+  Result := GetStreamFromWeb(tempImgUrl, Stream);
+  if not Result then
+    Exit;
+  if Stream <> nil then
+    FCurrentBingImageInfo.bitMap.LoadFromStream(Stream);
+  fileimagePath := TPath.Combine(FConfig.ImageFilePath, ImageFileName);
+  FConfig.AddLocalImages(ImageFileName, fileimagePath);
+  FCurrentBingImageInfo.bitMap.SaveToFile(fileimagePath);
+  if Stream <> nil then
+    Freeandnil(Stream);
+  FDownLoadsBingInfo.Add(FParams.ToString, FCurrentBingImageInfo);
+end;
+
+function TBingSource.DownLoadNextBingInfo: Boolean;
+begin
+  if FParams.startDateindex = 0 then
+  begin
+    Result := False;
+    ErrorString := '已经是最新一张了';
+    Exit;
   end
   else
   begin
-    Stream := TMemoryStream.Create;
-    GetStreamFromWeb(tempImgUrl, Stream);
-    if Stream <> nil then
-      CurrentBitMap.LoadFromStream(Stream);
-    fileimagePath := TPath.Combine(FConfig.ImageFilePath,GetImageFileName);
-    FConfig.AddLocalImages(GetImageFileName,fileimagePath);
-    CurrentBitMap.SaveToFile(fileimagePath);
-    if Stream <> nil then
-      Freeandnil(Stream);
-  end;
-end;
-
-procedure TBingSource.DownLoadNextBingInfo;
-begin
-  if FParams.startDateindex = 0 then
-    Exit
-  else
-  begin
     FParams.startDateindex := FParams.startDateindex - 1;
-    DownLoadBingInfo;
+    Result := DownLoadBingInfo;
   end;
 end;
 
-procedure TBingSource.DownLoadPreviousBingInfo;
+function TBingSource.DownLoadPreviousBingInfo: Boolean;
 begin
+  // bing 最多只支持17张图片
+  if FParams.startDateindex > 17 then
+  begin
+    Result := False;
+    ErrorString := '没有更多壁纸了';
+    Exit;
+  end;
   FParams.startDateindex := FParams.startDateindex + 1;
-  DownLoadBingInfo;
+  Result:=DownLoadBingInfo;
 end;
 
 procedure TBingSource.SetCountry(MKT: TBingResquestMkt);
