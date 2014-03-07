@@ -107,6 +107,7 @@ type
     Rectangle10: TRectangle;
     actionLeft: TImage;
     actionRight: TImage;
+    imgMail: TImage;
     procedure FormCreate(Sender: TObject);
     procedure lyImageInfoMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Single);
@@ -132,6 +133,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure actionLeftClick(Sender: TObject);
     procedure actionRightClick(Sender: TObject);
+    procedure imgMailClick(Sender: TObject);
   private
     { Private declarations }
     FCurrentUIStyle: TUIStyle;
@@ -148,7 +150,7 @@ type
     procedure TransitionAniOnProgress(Sender: TObject);
     procedure DisplayBingInfo;
     procedure RippleChangeImg;
-    procedure ShowMessage(const ErrorMsg: String);
+    procedure ShowMessage(const ErrorMsg: String;LongMsg:Boolean=False);
   public
     { Public declarations }
     property CurrentUIStyle: TUIStyle read FCurrentUIStyle
@@ -457,6 +459,11 @@ begin
   CurrentUIStyle := TUICountry;
 end;
 
+procedure TfrmMain.imgMailClick(Sender: TObject);
+begin
+  Showmessage('感谢您的支持！！！如果亲有什么建议,请与我联系(Pavkoo@live.com)  ^.^',True);
+end;
+
 procedure TfrmMain.imgMainMouseDown(Sender: TObject; Button: TMouseButton;
 Shift: TShiftState; X, Y: Single);
 begin
@@ -531,7 +538,7 @@ end;
 
 
 
-procedure TfrmMain.ShowMessage(const ErrorMsg: String);
+procedure TfrmMain.ShowMessage(const ErrorMsg: String;LongMsg:Boolean=False);
 var
   OrgColor: TAlphaColor;
 begin
@@ -542,6 +549,11 @@ begin
   txtError.Text := ErrorMsg;
   txtError.AnimateFloat('Width', Rectsettingbk.Width);
 
+  if LongMsg then
+
+  txtError.AnimateFloatWait('Opacity', 0.9, 2*ERRORMESSAGESHOWTIME,
+    TAnimationType.atInOut, TInterpolationType.itCircular)
+  else
   txtError.AnimateFloatWait('Opacity', 0.9, ERRORMESSAGESHOWTIME,
     TAnimationType.atInOut, TInterpolationType.itCircular);
 
